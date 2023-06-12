@@ -23,10 +23,10 @@ function css() {
 			lineNumbers: true
 		}).on("error", sass.logError))
 		.pipe(autoprefixer("last 4 version"))
-		.pipe(dest("public/css"))
+		.pipe(dest("docs/css"))
 		.pipe(postcss([cssnano()]))
 		.pipe(rename({ suffix: ".min" }))
-		.pipe(dest("public/css"))
+		.pipe(dest("docs/css"))
 		.pipe(browsersync.reload({ stream: true }));
 };
 // build third-party CSS files that can't be compiled through PostCSS
@@ -34,7 +34,7 @@ function libraries() {
 	return src([
 			"node_modules/bootstrap/dist/css/bootstrap.min.css"
 		])
-		.pipe(dest("public/css"));
+		.pipe(dest("docs/css"));
 }
 // Build JS
 function js() {
@@ -43,20 +43,20 @@ function js() {
 			"resources/js/app.js"
 		])
 		.pipe(concat("app.js"))
-		.pipe(dest("public/js"))
+		.pipe(dest("docs/js"))
 		.pipe(terser())
 		.on("error", function(err) {
 			gutil.log(gutil.colors.red("[Error]"), err.toString());
 		})
 		.pipe(rename({ suffix: ".min" }))
-		.pipe(dest("public/js"))
+		.pipe(dest("docs/js"))
 		.pipe(browsersync.reload({ stream: true, once: true }));
 };
 // Run Browsersync through port 3000 for local testing with live reload
 function browsersyncServe(cb){
 	browsersync.init({
 	server: {
-		baseDir: 'public'
+		baseDir: 'docs'
 	}
 	});
 	cb();
@@ -68,7 +68,7 @@ function browsersyncReload(cb){
 
 // Watch for file changes within specified directories
 function watchTask(){
-	watch('public/*.html', browsersyncReload);
+	watch('docs/*.html', browsersyncReload);
 	watch('resources/scss/*.scss', series(css, browsersyncReload));
 	watch('resources/js/*.js', series(js, browsersyncReload));
 }

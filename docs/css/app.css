@@ -1,0 +1,65 @@
+/**
+ *
+ * --------------------------------
+ *  CSS Style
+ * -------------------------------
+ *
+ */
+:root {
+  --black: #212427;
+  --white: #fff;
+  --font: helvetica, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
+  --font-system: -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
+  --text-size: 2rem;
+  --text-color: #212427;
+  --text-extra-light: 200;
+  --text-light: 300;
+  --text-regular: 400;
+  --text-medium: 500;
+  --text-semi-bold: 600;
+  --text-bold: 700;
+  --text-extra-bold: 800;
+  --text-extra-heckin-bold: 850;
+  --standard-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --decelerate-ease: cubic-bezier(0, 0, 0.2, 1);
+  --accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/*
+Dropshadows, based on Google's Material Design
+	Reference: https://material.io/design/environment/light-shadows.html#shadows
+*/
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --navHeight: 5.4rem;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-size);
+  font-weight: var(--text-regular);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+@media (max-width: 575px) {
+  body {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 379px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
