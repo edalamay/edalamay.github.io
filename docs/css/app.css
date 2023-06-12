@@ -8,18 +8,19 @@
 :root {
   --black: #212427;
   --white: #fff;
-  --font: helvetica, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
+  --brand-blue: #3483ec;
+  --brand-purple: #6451b7;
+  --brand-grey: #666666;
+  --brand-darkGrey: #4d4d4d;
+  --brand-darkestGrey: #1a1a1a;
+  --font: Cabin, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
   --font-system: -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
   --text-size: 2rem;
   --text-color: #212427;
-  --text-extra-light: 200;
-  --text-light: 300;
   --text-regular: 400;
   --text-medium: 500;
   --text-semi-bold: 600;
   --text-bold: 700;
-  --text-extra-bold: 800;
-  --text-extra-heckin-bold: 850;
   --standard-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --decelerate-ease: cubic-bezier(0, 0, 0.2, 1);
   --accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
@@ -38,10 +39,10 @@ Dropshadows, based on Google's Material Design
 
 :root {
   font-size: 62.5%;
-  --navHeight: 5.4rem;
 }
 
 body {
+  --navHeight: 8rem;
   font-family: var(--font);
   font-size: var(--text-size);
   font-weight: var(--text-regular);
@@ -62,4 +63,312 @@ body {
   body {
     font-size: 1.6rem;
   }
+}
+body.scrolled {
+  --navHeight: 6rem;
+}
+
+.cta {
+  color: white;
+  text-transform: uppercase;
+  font-weight: var(--text-bold);
+  font-size: 2.2rem;
+  text-decoration: none;
+  background: var(--brand-blue);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  -webkit-transform: background 100ms var(--standard-ease);
+      -ms-transform: background 100ms var(--standard-ease);
+          transform: background 100ms var(--standard-ease);
+}
+.cta:hover {
+  background: #1469d9;
+}
+
+.hide {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: translateY(calc(var(--navHeight) * -1));
+      -ms-transform: translateY(calc(var(--navHeight) * -1));
+          transform: translateY(calc(var(--navHeight) * -1));
+}
+
+h2.special {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.25rem 1rem 0.5rem;
+  text-transform: uppercase;
+  color: white;
+  font-size: 3.6rem;
+  font-weight: var(--text-semi-bold);
+  margin: 0;
+}
+h2.special::before, h2.special::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+h2.special::before {
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--brand-blue);
+}
+h2.special::after {
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: var(--brand-blue);
+}
+
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--brand-blue);
+  height: var(--navHeight);
+  -webkit-transition: 100ms var(--standard-ease);
+  -o-transition: 100ms var(--standard-ease);
+  transition: 100ms var(--standard-ease);
+}
+#header nav {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+#header nav .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 170px;
+  margin-right: auto;
+}
+#header nav ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+#header nav ul.primary {
+  margin-right: 2rem;
+}
+#header nav ul li {
+  height: 100%;
+}
+#header nav ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: var(--text-medium);
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  -webkit-transition: 100ms var(--standard-ease);
+  -o-transition: 100ms var(--standard-ease);
+  transition: 100ms var(--standard-ease);
+}
+#header nav ul li a:hover {
+  background: #1469d9;
+}
+#header nav ul li a svg {
+  fill: white;
+}
+
+.section {
+  position: relative;
+}
+.section--banner {
+  aspect-ratio: 64/25;
+  display: grid;
+  place-items: center;
+}
+.section--banner .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.section--banner .bg img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.section--banner .content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.section--banner .content h1 img {
+  width: clamp(200px, 20vw, 400px);
+}
+.section--banner .content h1 .hidden {
+  font-size: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.section--banner .content h2 {
+  color: white;
+  font-size: 4rem;
+  font-weight: var(--text-semi-bold);
+  margin-bottom: 2rem;
+}
+.section--ce {
+  background: var(--brand-darkestGrey);
+  padding: 6rem 0 10rem;
+}
+.section--ce h2 {
+  margin-bottom: 8rem;
+}
+.section--ce .ce-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5rem 2rem;
+}
+.section--ce .ce-grid .block {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  aspect-ratio: 1/1;
+  -webkit-clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+          clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+}
+.section--ce .ce-grid .block:hover .bg .overlay {
+  opacity: 0;
+}
+.section--ce .ce-grid .block .bg img, .section--ce .ce-grid .block .bg .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.section--ce .ce-grid .block .bg img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.section--ce .ce-grid .block .bg .overlay {
+  background: rgba(33, 36, 39, 0.3);
+  -webkit-transition: 100ms var(--standard-ease);
+  -o-transition: 100ms var(--standard-ease);
+  transition: 100ms var(--standard-ease);
+}
+.section--ce .ce-grid .block h3, .section--ce .ce-grid .block time {
+  color: white;
+  position: relative;
+}
+.section--ce .ce-grid .block h3 {
+  font-size: 3.2rem;
+  margin: 0;
+}
+.section--ce .ce-grid .block h3::after {
+  content: "";
+  display: block;
+  width: 80%;
+  -webkit-transform: translateX(10%);
+      -ms-transform: translateX(10%);
+          transform: translateX(10%);
+  margin: 1rem 0 1.5rem;
+  border-bottom: 4px solid var(--brand-blue);
+}
+.section--ce .ce-grid .block time {
+  font-size: 2.4rem;
+  font-weight: var(--text-semi-bold);
+}
+
+#footer {
+  background: var(--brand-darkGrey);
+  padding: 6rem 0 0;
+}
+#footer .grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+}
+#footer .logo {
+  width: 330px;
+}
+#footer .footer-nav {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#footer .footer-nav li a {
+  padding: 0.5rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  color: white;
+  text-decoration: none;
+  font-size: 2.2rem;
+  font-weight: var(--text-semi-bold);
+}
+#footer .footer-nav li a.img {
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+#footer .footer-nav li a svg {
+  fill: white;
+  height: 2rem;
+}
+#footer .copyright {
+  font-size: 1.6rem;
+  color: white;
+  border-top: 2px solid var(--brand-grey);
+  padding: 2rem 0 1.5rem;
+  margin-top: 5rem;
 }
