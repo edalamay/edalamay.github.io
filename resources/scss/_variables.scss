@@ -1,0 +1,63 @@
+// Colors
+$black: #212427; // Not pure black, better for readability
+$white: #fff;
+
+// Typography
+$text-color: $black;
+$font: helvetica, sans-serif; // Define custom font(s) here
+$font-system: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif;
+$text-size: 2rem; // 20px
+$text-style: normal;
+
+// Font Weights
+$text-extra-light: 200;
+$text-light: 300;
+$text-regular: 400;
+$text-medium: 500;
+$text-semi-bold: 600;
+$text-bold: 700;
+$text-extra-bold: 800;
+$text-extra-heckin-bold: 850;
+
+// Easings
+$standard-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$decelerate-ease: cubic-bezier(0, 0, 0.2, 1);
+$accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
+
+// CSS Variables
+:root {
+	// Colors
+	--black: #{$black};
+	--white: #{$white};
+
+	// Typography
+	--font: #{$font}, #{$font-system};
+	--font-system: #{$font-system};
+	--text-size: #{$text-size};
+	--text-color: #{$text-color};
+	--text-extra-light: #{$text-extra-light};
+	--text-light: #{$text-light};
+	--text-regular: #{$text-regular};
+	--text-medium: #{$text-medium};
+	--text-semi-bold: #{$text-semi-bold};
+	--text-bold: #{$text-bold};
+	--text-extra-bold: #{$text-extra-bold};
+	--text-extra-heckin-bold: #{$text-extra-heckin-bold};
+
+	// Easings
+	--standard-ease: #{$standard-ease};
+	--decelerate-ease: #{$decelerate-ease};
+	--accelerate-ease: #{$accelerate-ease};
+}
+
+// Breakpoints / Widths for IncludeMedia
+$grid-breakpoints: (
+	xxs: 0,
+	xs:  380px,
+	xsm: 480px,
+	sm:  576px,
+	md:  768px,
+	lg:  992px,
+	xl:  1200px,
+	xxl: 1400px
+) !default;

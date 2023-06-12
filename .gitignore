@@ -1,0 +1,17 @@
+/node_modules
+/public/js
+/public/css
+/public/img
+/public/files
+/storage/*.key
+/vendor
+/.idea
+*.min.js
+*.min.css
+npm-debug.log
+.env
+/design
+*.aep
+*.ai
+*.psd
+package-lock.json

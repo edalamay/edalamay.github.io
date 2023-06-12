@@ -1,0 +1,53 @@
+/**
+ *
+ * --------------------------------
+ *  CSS Style
+ * -------------------------------
+ *
+ */
+
+// Variables
+@import "variables";
+
+// media queries
+@import "node_modules/include-media/dist/_include-media.scss";
+$breakpoints: $grid-breakpoints;
+
+// Helpers
+@import "mixins";
+
+// Imports
+	// @import "example";
+
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	// Set 1rem = 10px, so 1.6rem is 16px, etc
+	font-size: 62.5%;
+	--navHeight: 5.4rem;
+}
+
+body {
+	font: {
+		family: var(--font);
+		size: var(--text-size);
+		weight: var(--text-regular);
+	}
+	line-height: 1.4;
+	@include font-smoothing;
+	color: var(--text-color);
+	width: 100%;
+	-webkit-overflow-scrolling: touch;
+	overflow-x: hidden;
+	@include media("<sm") {
+		font-size: 1.8rem;
+	}
+	@include media("<xs") {
+		font-size: 1.6rem;
+	}
+}
