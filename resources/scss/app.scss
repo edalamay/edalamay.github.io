@@ -317,6 +317,7 @@ h2.special {
 				justify-content: center;
 				aspect-ratio: 1/.9;
 				clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%, 0 100%);
+				text-decoration: none;
 				&:hover {
 					.bg {
 						.overlay {
@@ -349,7 +350,7 @@ h2.special {
 					}
 				}
 				
-				h3,time {
+				h3,time,.rank {
 					--throw: 3px;
 					--nt: calc(var(--throw) * -1);
 					--spread: 4px;
@@ -376,6 +377,23 @@ h2.special {
 				time {
 					font-size: 2.4rem;
 					font-weight: var(--text-semi-bold);
+				}
+				.rank {
+					display: flex;
+					align-items: center;
+					font: {
+						size: 1.6rem;
+						weight: var(--text-bold);
+					}
+					&::before,
+					&::after {
+						content: '';
+						display: inline-flex;
+						width: 1.5rem;
+						height: 2px;
+						background: white;
+						margin: 0 0.6rem;
+					}
 				}
 			}
 		}
