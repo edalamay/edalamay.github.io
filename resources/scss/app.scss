@@ -57,6 +57,10 @@ body {
 	}
 }
 .cta {
+	--skewAngle: 5%;
+	--skewTL: calc(var(--skewAngle));
+	--skewBR: calc(100% - var(--skewAngle));
+	position: relative;
 	color: white;
 	text-transform: uppercase;
 	font-weight: var(--text-bold);
@@ -64,10 +68,30 @@ body {
 	text-decoration: none;
 	background: var(--brand-blue);
 	padding: 1rem 2rem;
-	border-radius: 5px;
+	// border-radius: 5px;
+	clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%,0 100%);
 	transform: background 100ms var(--standard-ease);
+	overflow: hidden;
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: var(--brand-purple);
+		z-index: -1;
+		transform-origin: left;
+		transition: transform 200ms var(--standard-ease);
+		transform: translateX(-100%);
+		clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%,0 100%);
+	}
 	&:hover {
-		background: darken($brand-blue,10%);
+		// background: darken($brand-blue,10%);
+		&::before {
+			transform: translateX(0);
+		}
 	}
 }
 .hide {
