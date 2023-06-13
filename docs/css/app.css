@@ -13,6 +13,8 @@
   --brand-grey: #666666;
   --brand-darkGrey: #4d4d4d;
   --brand-darkestGrey: #1a1a1a;
+  --brand-discord: #5865F2;
+  --brand-raiderio: #e5a024;
   --font: Cabin, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
   --font-system: -apple-system, blinkmacsystemfont, Segoe UI, roboto, helvetica, arial, sans-serif;
   --text-size: 2rem;
@@ -43,6 +45,7 @@ Dropshadows, based on Google's Material Design
 
 body {
   --navHeight: 8rem;
+  --navBgColor: rgba($brand-blue, 0);
   font-family: var(--font);
   font-size: var(--text-size);
   font-weight: var(--text-regular);
@@ -65,7 +68,7 @@ body {
   }
 }
 body.scrolled {
-  --navHeight: 6rem;
+  --bg: var(--brand-blue);
 }
 
 .cta {
@@ -129,10 +132,11 @@ h2.special::after {
 }
 
 #header {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 10;
-  background: var(--brand-blue);
+  background: var(--navBgColor);
   height: var(--navHeight);
   -webkit-transition: 100ms var(--standard-ease);
   -o-transition: 100ms var(--standard-ease);
@@ -203,22 +207,90 @@ h2.special::after {
   position: relative;
 }
 .section--banner {
-  aspect-ratio: 64/25;
   display: grid;
   place-items: center;
+  aspect-ratio: 16/8;
+  overflow: hidden;
 }
-.section--banner .bg {
+@media (max-width: 1199px) {
+  .section--banner {
+    aspect-ratio: 16/10.5;
+  }
+}
+@media (max-width: 991px) {
+  .section--banner {
+    aspect-ratio: 16/10.5;
+  }
+}
+@media (max-width: 767px) {
+  .section--banner {
+    aspect-ratio: 1/1;
+  }
+}
+@media (max-width: 575px) {
+  .section--banner {
+    aspect-ratio: 1/1.25;
+  }
+}
+@media (max-width: 379px) {
+  .section--banner {
+    aspect-ratio: 1/1.6;
+  }
+}
+.section--banner .background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: block;
 }
-.section--banner .bg img {
-  -o-object-fit: cover;
-     object-fit: cover;
+.section--banner .background .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  display: block;
+  background: var(--blue);
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+.section--banner .background img, .section--banner .background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+}
+@media (max-width: 767px) {
+  .section--banner .background img, .section--banner .background iframe {
+    -webkit-transform: scale(1.8);
+        -ms-transform: scale(1.8);
+            transform: scale(1.8);
+  }
+}
+@media (max-width: 575px) {
+  .section--banner .background img, .section--banner .background iframe {
+    -webkit-transform: scale(2.3);
+        -ms-transform: scale(2.3);
+            transform: scale(2.3);
+  }
+}
+@media (max-width: 379px) {
+  .section--banner .background img, .section--banner .background iframe {
+    -webkit-transform: scale(2.9);
+        -ms-transform: scale(2.9);
+            transform: scale(2.9);
+  }
 }
 .section--banner .content {
   position: relative;
@@ -268,6 +340,9 @@ h2.special::after {
   grid-gap: 5rem 2rem;
 }
 .section--ce .ce-grid .block {
+  --skewAngle: 10%;
+  --skewTL: calc(0% + var(--skewAngle));
+  --skewBR: calc(100% - var(--skewAngle));
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -282,12 +357,16 @@ h2.special::after {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  aspect-ratio: 1/1;
-  -webkit-clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-          clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+  aspect-ratio: 1/0.9;
+  -webkit-clip-path: polygon(var(--skewTL) 0, 100% 0, var(--skewBR) 100%, 0 100%);
+          clip-path: polygon(var(--skewTL) 0, 100% 0, var(--skewBR) 100%, 0 100%);
 }
 .section--ce .ce-grid .block:hover .bg .overlay {
   opacity: 0;
+}
+.section--ce .ce-grid .block:hover .bg img {
+  -webkit-transform: scale3d(1.1, 1.1, 1);
+          transform: scale3d(1.1, 1.1, 1);
 }
 .section--ce .ce-grid .block .bg img, .section--ce .ce-grid .block .bg .overlay {
   position: absolute;
@@ -295,16 +374,22 @@ h2.special::after {
   left: 0;
   width: 100%;
   height: 100%;
+  -webkit-transition: all 200ms var(--decelerate-ease);
+  -o-transition: all 200ms var(--decelerate-ease);
+  transition: all 200ms var(--decelerate-ease);
 }
 .section--ce .ce-grid .block .bg img {
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
 }
 .section--ce .ce-grid .block .bg .overlay {
   background: rgba(0, 0, 0, 0.5);
-  -webkit-transition: 100ms var(--standard-ease);
-  -o-transition: 100ms var(--standard-ease);
-  transition: 100ms var(--standard-ease);
+  width: 110%;
+  height: 110%;
+  left: -5%;
+  top: -5%;
 }
 .section--ce .ce-grid .block h3, .section--ce .ce-grid .block time {
   --throw: 3px;
@@ -360,6 +445,7 @@ h2.special::after {
           justify-content: center;
 }
 #footer .footer-nav li a {
+  position: relative;
   padding: 0.5rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -369,13 +455,42 @@ h2.special::after {
   font-size: 2.2rem;
   font-weight: var(--text-semi-bold);
 }
+#footer .footer-nav li a:not(.img):hover::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+#footer .footer-nav li a:not(.img)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  width: 90%;
+  border-bottom: 2px solid white;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale3d(0, 1, 1);
+          transform: scale3d(0, 1, 1);
+  -webkit-transition: -webkit-transform 100ms var(--standard-ease);
+  transition: -webkit-transform 100ms var(--standard-ease);
+  -o-transition: transform 100ms var(--standard-ease);
+  transition: transform 100ms var(--standard-ease);
+  transition: transform 100ms var(--standard-ease), -webkit-transform 100ms var(--standard-ease);
+}
 #footer .footer-nav li a.img {
   margin-right: 1rem;
   margin-top: 1rem;
 }
-#footer .footer-nav li a svg {
+#footer .footer-nav li a.img svg {
   fill: white;
-  height: 2rem;
+  height: 3rem;
+}
+#footer .footer-nav li a.img--discord:hover svg {
+  fill: var(--brand-discord);
+}
+#footer .footer-nav li a.img--raiderio:hover svg .color {
+  fill: var(--brand-raiderio);
 }
 #footer .copyright {
   font-size: 1.6rem;

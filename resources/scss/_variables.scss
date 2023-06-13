@@ -6,6 +6,8 @@ $brand-purple: #6451b7;
 $brand-grey: #666666;
 $brand-darkGrey: #4d4d4d;
 $brand-darkestGrey: #1a1a1a;
+$brand-discord: #5865F2;
+$brand-raiderio: #e5a024;
 
 // Typography
 $text-color: $black;
@@ -35,6 +37,8 @@ $accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
 	--brand-grey: #{$brand-grey};
 	--brand-darkGrey: #{$brand-darkGrey};
 	--brand-darkestGrey: #{$brand-darkestGrey};
+	--brand-discord: #{$brand-discord};
+	--brand-raiderio: #{$brand-raiderio};
 
 	// Typography
 	--font: #{$font}, #{$font-system};

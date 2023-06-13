@@ -33,6 +33,7 @@ $breakpoints: $grid-breakpoints;
 
 body {
 	--navHeight: 8rem;
+	--navBgColor: rgba($brand-blue, 0);
 	font: {
 		family: var(--font);
 		size: var(--text-size);
@@ -51,7 +52,8 @@ body {
 		font-size: 1.6rem;
 	}
 	&.scrolled {
-		--navHeight: 6rem;
+		// --navHeight: 6rem;
+		--bg: var(--brand-blue);
 	}
 }
 .cta {
@@ -109,10 +111,13 @@ h2.special {
 }
 
 #header {
-	position: sticky;
+	// position: sticky;
+	position: fixed;
+	width: 100%;
+
 	top: 0;
 	z-index: 10;
-	background: var(--brand-blue);
+	background: var(--navBgColor);
 	height: var(--navHeight);
 	transition: 100ms var(--standard-ease);
 	nav {
@@ -166,19 +171,74 @@ h2.special {
 	position: relative;
 	&--banner {
 		// height: 80vh;
-		aspect-ratio: 64/25;
+		// aspect-ratio: 64/25;
 		display: grid;
 		place-items: center;
-		.bg {
+		aspect-ratio: 16/8;
+		overflow: hidden;
+		@include media('<xl') {
+			aspect-ratio: 16/10.5;
+		}
+		@include media('<lg') {
+			aspect-ratio: 16/10.5;
+		}
+		@include media('<md') {
+			aspect-ratio: 1/1;
+		}
+		@include media('<sm') {
+			aspect-ratio: 1/1.25;
+		}
+		@include media('<xs') {
+			aspect-ratio: 1/1.6;
+		}
+		// .bg {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	img {
+		// 		object-fit: cover;
+		// 		width: 100%;
+		// 		height: 100%;
+		// 	}
+		// }
+		.background {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
-			img {
-				object-fit: cover;
+			display: block;
+			.overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
 				width: 100%;
 				height: 100%;
+				display: block;
+				background: var(--blue);
+				opacity: 0.5;
+				mix-blend-mode: multiply;
+			}
+			img,iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transform: scale(1.2); // up-scaling the video to crop out the YT logo in the bottom-right
+				transform-origin: center;
+				@include media('<md') {
+					transform: scale(1.8);
+				}
+				@include media('<sm') {
+					transform: scale(2.3);
+				}
+				@include media('<xs') {
+					transform: scale(2.9);
+				}
 			}
 		}
 		.content {
@@ -223,16 +283,24 @@ h2.special {
 			grid-template-columns: repeat(3, 1fr);
 			grid-gap: 5rem 2rem;
 			.block {
+				--skewAngle: 10%;
+				--skewTL: calc(0% + var(--skewAngle));
+				--skewBR: calc(100% - var(--skewAngle));
 				position: relative;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				aspect-ratio: 1/1;
-				clip-path: polygon(5% 0,100% 0,95% 100%, 0 100%);
+				aspect-ratio: 1/.9;
+				clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%, 0 100%);
 				&:hover {
-					.bg .overlay {
-						opacity: 0;
+					.bg {
+						.overlay {
+							opacity: 0;
+						}
+						img {
+							transform: scale3d(1.1,1.1,1);
+						}
 					}
 				}
 				.bg {
@@ -242,13 +310,18 @@ h2.special {
 						left: 0;
 						width: 100%;
 						height: 100%;
+						transition: all 200ms var(--decelerate-ease);
 					}
 					img {
 						object-fit: cover;
+						transform: scale3d(1,1,1);
 					}
 					.overlay {
 						background: rgba(black,0.5);
-						transition: 100ms var(--standard-ease);
+						width: 110%;
+						height: 110%;
+						left: -5%;
+						top: -5%;
 					}
 				}
 				
@@ -302,6 +375,7 @@ h2.special {
 		justify-content: center;
 		li {
 			a {
+				position: relative;
 				padding: 0.5rem;
 				display: inline-flex;
 				color: white;
@@ -310,13 +384,48 @@ h2.special {
 					size: 2.2rem;
 					weight: var(--text-semi-bold);
 				};
+				&:not(.img) {
+					&:hover {
+						&::after {
+							transform: scale3d(1,1,1);
+						}
+					}
+					&::after {
+						content: '';
+						display: block;
+						position: absolute;
+						top: 90%;
+						left: 5%;
+						width: 90%;
+						border-bottom: 2px solid white;
+						transform-origin: center;
+						transform: scale3d(0,1,1);
+						transition: transform 100ms var(--standard-ease);
+					}
+				}
 				&.img {
 					margin-right: 1rem;
 					margin-top: 1rem;
-				}
-				svg {
-					fill: white;
-					height: 2rem;
+					svg {
+						fill: white;
+						height: 3rem;
+					}
+					&--discord {
+						&:hover {
+							svg {
+								fill: var(--brand-discord);
+							}
+						}
+					}
+					&--raiderio {
+						&:hover {
+							svg {
+								.color {
+									fill: var(--brand-raiderio);
+								}
+							}
+						}
+					}
 				}
 			}
 		}
