@@ -137,3 +137,117 @@ window.addEventListener("scroll", function () {
 	// nav resize
 	resizeNav();
 });
+
+
+// Twitch API
+//===========================================
+let clinetId = "pb9yjlxrxsoonymo0d2vuc1j5k1s73";
+let clinetSecret = "dm97lwseef06pld7z7lx3oou1jvpe1";
+
+function getTwitchAuthorization() {
+	let url = `https://id.twitch.tv/oauth2/token?client_id=${clinetId}&client_secret=${clinetSecret}&grant_type=client_credentials`;
+
+	return fetch(url, {
+	method: "POST",
+	})
+	.then((res) => res.json())
+	.then((data) => {
+		return data;
+	});
+}
+
+async function getStreams() {
+	// const users = ['eiya','dorki','ellesmere_gaming']; //testing array
+	const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered']; // live array
+	const endpoint = "https://api.twitch.tv/helix/streams?user_login="+users.join('&user_login=');
+
+	let authorizationObject = await getTwitchAuthorization();
+	let { access_token, expires_in, token_type } = authorizationObject;
+
+	//token_type first letter must be uppercase    
+	token_type =
+	token_type.substring(0, 1).toUpperCase() +
+	token_type.substring(1, token_type.length);
+
+	let authorization = `${token_type} ${access_token}`;
+
+	let headers = {
+	authorization,
+	"Client-Id": clinetId,
+	};
+
+	fetch(endpoint, {
+	headers,
+	})
+	.then((res) => res.json())
+	.then((data) => renderStreams(data));
+}
+
+// inspect api json response with this quick snippet
+
+// function renderStreams(data) {
+// 	console.log(data);
+// }
+function renderStreams(data) {
+	let { data: streams } = data;
+	let streamsContainer = document.querySelector(".streamers");
+	if (streams.length > 0) {
+		streams.forEach((stream,i) => {
+			let { thumbnail_url: thumbnail, title, viewer_count, user_name, user_login, game_name } = stream;
+			if (game_name == 'World of Warcraft') {
+				let hdThumbnail = thumbnail
+					.replace("{width}", "533")
+					.replace("{height}", "300");
+				let streamerBlock = document.createElement('div');
+				streamerBlock.className = "streamer";
+				streamerBlock.dataset.user = user_login;
+				// Create streamer block
+				streamerBlock.innerHTML = `
+					<img class="streamer--preview" src="${hdThumbnail}" />
+					<h3 class="streamer--name">${user_name}</h3>
+					<p class="streamer--views">
+						${viewer_count
+							.toString()
+							.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+					</p>
+				`;
+				// add event listener to swap stream on click
+				streamerBlock.addEventListener('click', (elem) => {
+					twitchWrapper.innerHTML = '';
+					twitchPlayer = new Twitch.Player("twitch", {
+						channel: user_login, // TODO: Change this to the streams username you want to embed
+						width: 640,
+						height: 360,
+						theme: 'dark',
+						layout: 'video-with-chat',
+						parent: ['localhost','commit-guild.com']
+					});
+					elems = document.querySelectorAll('.streamer');
+					[].forEach.call(elems, function(el) {
+						el.classList.remove("active");
+					});
+					streamerBlock.classList.add('active');
+				});
+				streamsContainer.appendChild(streamerBlock);
+			}
+		});
+		// create stream
+		var token = 'twbpwntxuc55tz32fabgjxovvnaupq',
+			activeStreamers = document.querySelectorAll('.streamer'),
+			firstStreamer = activeStreamers[0].dataset.user,
+			twitchWrapper = document.getElementById('twitch'),
+			twitchOptions = {
+				channel: firstStreamer, // TODO: Change this to the streams username you want to embed
+				width: 640,
+				height: 360,
+				theme: 'dark',
+				layout: 'video-with-chat',
+				parent: ['localhost','commit-guild.com']
+			};
+		var twitchPlayer = new Twitch.Player("twitch", twitchOptions);
+	}
+}
+
+getStreams();
+
+

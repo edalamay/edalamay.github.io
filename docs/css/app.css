@@ -136,12 +136,12 @@ h2.special {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  padding: 0.25rem 1rem 0.5rem;
+  padding: 0.25rem 1.75rem 1rem;
   text-transform: uppercase;
   color: white;
   font-size: 3.6rem;
   font-weight: var(--text-semi-bold);
-  margin: 0;
+  margin-bottom: 6rem;
 }
 h2.special::before, h2.special::after {
   content: "";
@@ -161,6 +161,33 @@ h2.special::after {
   height: 4px;
   width: 100%;
   background: var(--brand-blue);
+}
+
+.linkUnderline, #footer .footer-nav li a:not(.img), #header nav ul li a:not(.img) {
+  position: relative;
+}
+.linkUnderline:hover::after, #footer .footer-nav li a:hover:not(.img)::after, #header nav ul li a:hover:not(.img)::after {
+  -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+}
+.linkUnderline::after, #footer .footer-nav li a:not(.img)::after, #header nav ul li a:not(.img)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  width: 90%;
+  border-bottom: 2px solid white;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: scale3d(0, 1, 1);
+          transform: scale3d(0, 1, 1);
+  -webkit-transition: -webkit-transform 100ms var(--standard-ease);
+  transition: -webkit-transform 100ms var(--standard-ease);
+  -o-transition: transform 100ms var(--standard-ease);
+  transition: transform 100ms var(--standard-ease);
+  transition: transform 100ms var(--standard-ease), -webkit-transform 100ms var(--standard-ease);
 }
 
 #header {
@@ -189,7 +216,7 @@ h2.special::after {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 170px;
+  width: 150px;
   margin-right: auto;
 }
 #header nav ul {
@@ -228,13 +255,18 @@ h2.special::after {
   -o-transition: 100ms var(--standard-ease);
   transition: 100ms var(--standard-ease);
 }
-#header nav ul li a:hover {
-  background: #1469d9;
+#header nav ul li a:not(.img)::after {
+  left: 7.5%;
+  width: 85%;
+  top: 70%;
 }
-#header nav ul li a svg {
+#header nav ul li a.img svg {
   fill: white;
+  height: 1em;
 }
-
+#header nav ul li a.img--discord svg .color {
+  fill: transparent;
+}
 .section {
   position: relative;
 }
@@ -284,9 +316,8 @@ h2.special::after {
   width: 100%;
   height: 100%;
   display: block;
-  background: var(--blue);
-  opacity: 0.5;
-  mix-blend-mode: multiply;
+  background: black;
+  opacity: 0.4;
 }
 .section--banner .background img, .section--banner .background iframe {
   position: absolute;
@@ -362,9 +393,6 @@ h2.special::after {
 .section--ce {
   background: var(--brand-darkestGrey);
   padding: 6rem 0 10rem;
-}
-.section--ce h2 {
-  margin-bottom: 8rem;
 }
 .section--ce .ce-grid {
   display: grid;
@@ -471,6 +499,93 @@ h2.special::after {
   background: white;
   margin: 0 0.6rem;
 }
+.section--streams {
+  background: var(--brand-darkestGrey);
+  padding: 6rem 0;
+}
+.section--streams .streamers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+.section--streams .streamers .streamer {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 3px solid transparent;
+  padding: 1.5rem 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+}
+.section--streams .streamers .streamer.active, .section--streams .streamers .streamer:hover {
+  border-color: var(--brand-blue);
+}
+.section--streams .streamers .streamer--preview {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+}
+.section--streams .streamers .streamer--name, .section--streams .streamers .streamer--views {
+  color: white;
+  position: relative;
+  text-shadow: 0 0 20px var(--black);
+}
+.section--streams .streamers .streamer--name {
+  font-size: 2.2rem;
+}
+.section--streams .streamers .streamer--views {
+  font-size: 1.6rem;
+}
+.section--streams .streamers .streamer--views::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: red;
+  border-radius: 50%;
+}
+.section--streams #twitch {
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  margin: 3rem auto;
+  background: -o-linear-gradient(45deg, rgb(52, 131, 236) 0%, rgb(100, 81, 183) 100%);
+  background: linear-gradient(45deg, rgb(52, 131, 236) 0%, rgb(100, 81, 183) 100%);
+  display: grid;
+  place-content: center;
+}
+.section--streams #twitch object, .section--streams #twitch iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.section--streams .noStreams {
+  color: #fff;
+  font-size: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.section--streams .noStreams img {
+  width: 64px;
+  margin-left: 2rem;
+}
 
 #footer {
   background: var(--brand-darkGrey);
@@ -508,29 +623,6 @@ h2.special::after {
   font-size: 2.2rem;
   font-weight: var(--text-semi-bold);
 }
-#footer .footer-nav li a:not(.img):hover::after {
-  -webkit-transform: scale3d(1, 1, 1);
-          transform: scale3d(1, 1, 1);
-}
-#footer .footer-nav li a:not(.img)::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 90%;
-  left: 5%;
-  width: 90%;
-  border-bottom: 2px solid white;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
-  -webkit-transform: scale3d(0, 1, 1);
-          transform: scale3d(0, 1, 1);
-  -webkit-transition: -webkit-transform 100ms var(--standard-ease);
-  transition: -webkit-transform 100ms var(--standard-ease);
-  -o-transition: transform 100ms var(--standard-ease);
-  transition: transform 100ms var(--standard-ease);
-  transition: transform 100ms var(--standard-ease), -webkit-transform 100ms var(--standard-ease);
-}
 #footer .footer-nav li a.img {
   margin-right: 1rem;
   margin-top: 1rem;
@@ -539,8 +631,14 @@ h2.special::after {
   fill: white;
   height: 3rem;
 }
+#footer .footer-nav li a.img--discord svg .color {
+  fill: transparent;
+}
 #footer .footer-nav li a.img--discord:hover svg {
   fill: var(--brand-discord);
+}
+#footer .footer-nav li a.img--discord:hover svg .color {
+  fill: white;
 }
 #footer .footer-nav li a.img--raiderio:hover svg .color {
   fill: var(--brand-raiderio);
