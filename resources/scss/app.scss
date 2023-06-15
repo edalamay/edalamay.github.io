@@ -519,6 +519,8 @@ h2.special {
 			font-size: 4rem;
 			display: flex;
 			align-items: center;
+			font-size: clamp(2rem, 3vw, 6rem);
+			font-weight: var(--text-regular);
 			img {
 				width: 64px;
 				margin: 0 2rem;
