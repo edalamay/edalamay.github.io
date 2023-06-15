@@ -435,9 +435,9 @@ h2.special::after {
   left: 0;
   width: 100%;
   height: 100%;
-  -webkit-transition: all 200ms var(--decelerate-ease);
-  -o-transition: all 200ms var(--decelerate-ease);
-  transition: all 200ms var(--decelerate-ease);
+  -webkit-transition: all 600ms var(--decelerate-ease);
+  -o-transition: all 600ms var(--decelerate-ease);
+  transition: all 600ms var(--decelerate-ease);
 }
 .section--ce .ce-grid .block .bg img {
   -o-object-fit: cover;
