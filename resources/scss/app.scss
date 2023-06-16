@@ -111,7 +111,7 @@ h2.special {
 	color: white;
 	font-size: 3.6rem;
 	font-weight: var(--text-semi-bold);
-	margin-bottom: 6rem;
+	margin-bottom: 4rem;
 	&::before,
 	&::after {
 		content: '';
@@ -477,15 +477,30 @@ h2.special {
 				}
 				&--name,
 				&--views {
+					--throw: 3px;
+					--nt: calc(var(--throw) * -1);
+					--spread: 4px;
+					--color: rgba(0 0 0 / 0.6);
 					color: white;
 					position: relative;
-					text-shadow: 0 0 20px var(--black);
+					text-shadow: var(--throw) var(--throw) var(--spread) var(--color),
+								var(--nt) var(--throw) var(--spread) var(--color),
+								var(--throw) var(--nt) var(--spread) var(--color),
+								var(--nt) var(--nt) var(--spread) var(--color);
 				}
 				&--name {
 					font-size: 2.2rem;
 				}
 				&--views {
 					font-size: 1.6rem;
+					@keyframes flash {
+						from {
+							opacity: 0.5;
+						}
+						to {
+							opacity: 1;
+						}
+					}
 					&::before {
 						content: '';
 						display: inline-block;
@@ -493,6 +508,12 @@ h2.special {
 						height: 1rem;
 						background: red;
 						border-radius: 50%;
+						// animation: flash 300ms var(--standard-ease);
+						animation-name: flash;
+						animation-duration: 500ms;
+						animation-timing-function: linear;
+						animation-iteration-count: infinite;
+						animation-direction: alternate;
 					}
 				}
 			}
@@ -524,6 +545,9 @@ h2.special {
 			img {
 				width: 64px;
 				margin: 0 2rem;
+				&:last-of-type {
+					transform: scaleX(-1);
+				}
 			}
 		}
 	}
