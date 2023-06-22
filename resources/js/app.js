@@ -150,8 +150,8 @@ function getTwitchAuthorization() {
 }
 
 async function getStreams() {
-	const users = ['warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
-	// const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered']; // live array
+	// const users = ['warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
+	const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered','creationdefaced']; // live array
 	const endpoint = "https://api.twitch.tv/helix/streams?user_login="+users.join('&user_login=');
 
 	let authorizationObject = await getTwitchAuthorization();
