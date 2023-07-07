@@ -27,6 +27,9 @@ $standard-ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decelerate-ease: cubic-bezier(0, 0, 0.2, 1);
 $accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
 
+// Mobile Nav
+$nav-timing: 200ms;
+
 // CSS Variables
 :root {
 	// Colors
@@ -50,6 +53,7 @@ $accelerate-ease: cubic-bezier(0.4, 0, 1, 1);
 	--text-semi-bold: #{$text-semi-bold};
 	--text-bold: #{$text-bold};
 
+	--nav-timing: #{$nav-timing};
 	// Easings
 	--standard-ease: #{$standard-ease};
 	--decelerate-ease: #{$decelerate-ease};

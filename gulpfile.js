@@ -48,26 +48,21 @@ function jsLibraries() {
 		.pipe(dest("docs/js"));
 }
 // Build JS
-// function js() {
-// 	return src([
-// 			"node_modules/bootstrap/dist/js/bootstrap.min.js",
-// 			"resources/js/app.js"
-// 		])
-// 		.pipe(concat("app.js"))
-// 		.pipe(dest("docs/js"))
-// 		.pipe(terser())
-// 		.on("error", function(err) {
-// 			gutil.log(gutil.colors.red("[Error]"), err.toString());
-// 		})
-// 		.pipe(rename({ suffix: ".min" }))
-// 		.pipe(dest("docs/js"))
-// 		.pipe(browsersync.reload({ stream: true, once: true }));
-// };
 function js() {
-	return src('resources/js/app.js')
-	.pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
-	.pipe(dest('docs/js'))
-}
+	return src([
+			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+			"resources/js/app.js"
+		])
+		.pipe(concat("app.js"))
+		.pipe(dest("docs/js"))
+		.pipe(terser())
+		.on("error", function(err) {
+			gutil.log(gutil.colors.red("[Error]"), err.toString());
+		})
+		.pipe(rename({ suffix: ".min" }))
+		.pipe(dest("docs/js"))
+		.pipe(browsersync.reload({ stream: true, once: true }));
+};
 function json() {
 	return src("resources/js/bossKills.json")
 		.pipe(dest("docs/js"))

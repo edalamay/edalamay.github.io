@@ -1,3 +1,25 @@
+// VH Hack for mobile web browsers -- making 100vh the same everywhere
+	/* 
+	To use, set a css property using the new var in a calc. Ex:
+	.class {
+		height: calc(var(--vh, 1vh) * 100);
+	}
+	*/
+	//=====================================================================
+	var vh = window.innerHeight * 0.01;
+	function setVH() {
+		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+		vh = window.innerHeight * 0.01;
+		// Then we set the value in the --vh custom property to the root of the document
+		$("body").get(0).style.setProperty("--vh", vh+'px');
+	}
+	$(window).resize(function() {
+		setVH();
+	});
+	$(document).ready(function(){
+		setVH();
+	})
+
 // nav
 //===========================================
 	// function resizeNav() {
@@ -11,6 +33,22 @@
 	// $(document).on("scroll", function(){
 	// 	resizeNav();
 	// });
+	var menuBtn = $('#menu-btn'),
+		navWrap = $('.mobileNav');
+
+	menuBtn.click(function(){
+		if ( $('body').hasClass('nav-open') ) {
+			$(this).removeClass('open');
+			$('body').removeClass('nav-open');
+			$('#header').removeClass('nav-open');
+			bodyScrollLock.enableBodyScroll(navWrap);
+		} else {
+			$(this).addClass('open');
+			$('body').addClass('nav-open');
+			$('#header').addClass('nav-open');
+			bodyScrollLock.disableBodyScroll(navWrap);
+		}
+	});
 
 // header video
 //===========================================
