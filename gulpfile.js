@@ -14,6 +14,11 @@ const postcss = require('gulp-postcss');
 const cssnano = require("cssnano");
 const concat = require('gulp-concat');
 
+const rollup = require('gulp-better-rollup');
+const babel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+
 
 // Build app.css file
 function css() {
@@ -30,28 +35,43 @@ function css() {
 		.pipe(browsersync.reload({ stream: true }));
 };
 // build third-party CSS files that can't be compiled through PostCSS
-function libraries() {
+function cssLibraries() {
 	return src([
 			"node_modules/bootstrap/dist/css/bootstrap.min.css"
 		])
 		.pipe(dest("docs/css"));
 }
-// Build JS
-function js() {
+function jsLibraries() {
 	return src([
-			"node_modules/bootstrap/dist/js/bootstrap.min.js",
-			"resources/js/app.js"
+			"node_modules/bootstrap/dist/js/bootstrap.min.js"
 		])
-		.pipe(concat("app.js"))
+		.pipe(dest("docs/js"));
+}
+// Build JS
+// function js() {
+// 	return src([
+// 			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+// 			"resources/js/app.js"
+// 		])
+// 		.pipe(concat("app.js"))
+// 		.pipe(dest("docs/js"))
+// 		.pipe(terser())
+// 		.on("error", function(err) {
+// 			gutil.log(gutil.colors.red("[Error]"), err.toString());
+// 		})
+// 		.pipe(rename({ suffix: ".min" }))
+// 		.pipe(dest("docs/js"))
+// 		.pipe(browsersync.reload({ stream: true, once: true }));
+// };
+function js() {
+	return src('resources/js/app.js')
+	.pipe(rollup({ plugins: [babel(), resolve(), commonjs()] }, 'umd'))
+	.pipe(dest('docs/js'))
+}
+function json() {
+	return src("resources/js/bossKills.json")
 		.pipe(dest("docs/js"))
-		.pipe(terser())
-		.on("error", function(err) {
-			gutil.log(gutil.colors.red("[Error]"), err.toString());
-		})
-		.pipe(rename({ suffix: ".min" }))
-		.pipe(dest("docs/js"))
-		.pipe(browsersync.reload({ stream: true, once: true }));
-};
+}
 // Run Browsersync through port 3000 for local testing with live reload
 function browsersyncServe(cb){
 	browsersync.init({
@@ -71,13 +91,16 @@ function watchTask(){
 	watch('docs/*.html', browsersyncReload);
 	watch('resources/scss/*.scss', series(css, browsersyncReload));
 	watch('resources/js/*.js', series(js, browsersyncReload));
+	watch('resources/js/*.json', series(json, browsersyncReload));
 }
 
 // Run our tasks
 exports.default = series(
+	cssLibraries,
+	jsLibraries,
 	css,
-	libraries,
 	js,
+	json,
 	browsersyncServe,
 	watchTask
 );

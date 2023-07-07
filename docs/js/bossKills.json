@@ -1,0 +1,44 @@
+[
+	{
+		"boss": "Sarkareth",
+		"date": "",
+		"rank": "",
+		"img": "/img/bosses/sarkareth.jpg",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/aberrus-the-shadowed-crucible/scalecommander-sarkareth"
+	},
+	{
+		"boss": "Raszageth",
+		"date": "April 6, 2023",
+		"rank": "US 374",
+		"img": "/img/bosses/raszageth.jpg",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/vault-of-the-incarnates/raszageth-the-stormeater"
+	},
+	{
+		"boss": "The Jailer",
+		"date": "July 22, 2022",
+		"rank": "US 374",
+		"img": "/img/bosses/jailer.jpg",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sepulcher-of-the-first-ones/the-jailer"
+	},
+	{
+		"boss": "Sylvanas",
+		"date": "January 26, 2022",
+		"rank": "US 545",
+		"img": "/img/bosses/sylvanas.jpg",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sanctum-of-domination/sylvanas-windrunner"
+	},
+	{
+		"boss": "Sire Denathrius",
+		"date": "June 23, 2021",
+		"rank": "US 684",
+		"img": "/img/bosses/sire-denathrius.jpeg",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/castle-nathria/sire-denathrius"
+	},
+	{
+		"boss": "N'Zoth",
+		"date": "September 30, 2020",
+		"rank": "US 986",
+		"img": "/img/bosses/nzoth.webp",
+		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/nyalotha-the-waking-city/nzoth-the-corruptor"
+	}
+]

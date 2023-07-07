@@ -377,6 +377,13 @@ h2.special {
 						}
 					}
 				}
+				&.wip {
+					.bg {
+						img {
+							filter: saturate(0%);
+						}
+					}
+				}
 				.bg {
 					img,.overlay {
 						position: absolute;
