@@ -139,7 +139,7 @@
 // nav scroll effect
 //===========================================
 	let nav = document.querySelector('#header'),
-		sectionOneOffset = document.querySelector('.section--ce').offsetTop,
+		sectionOneOffset = document.querySelector('.section--prog').offsetTop,
 		navMargin = parseInt(getComputedStyle(nav)['margin-top'], 10),
 		navHeight = nav.offsetHeight + navMargin,
 		bgOpacity = 0,
