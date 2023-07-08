@@ -191,6 +191,11 @@ h2.special {
 		}
 	}
 }
+.external-link {
+	fill: white;
+	height: 1.5rem;
+	margin-left: 0.8rem;
+}
 #header {
 	// position: sticky;
 	position: fixed;
@@ -583,6 +588,14 @@ h2.special {
 					display: inline-block;
 				}
 			}
+		}
+	}
+	&--prog {
+		background: var(--brand-darkestGrey);
+		padding: 6rem 0 4rem;
+		iframe {
+			width: 100%;
+			// aspect-ratio: 3.1 / 1;
 		}
 	}
 	&--ce {

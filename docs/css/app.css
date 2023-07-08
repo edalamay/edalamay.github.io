@@ -232,6 +232,12 @@ h2.special::after {
   }
 }
 
+.external-link {
+  fill: white;
+  height: 1.5rem;
+  margin-left: 0.8rem;
+}
+
 #header {
   position: fixed;
   width: 100%;
@@ -720,6 +726,13 @@ h2.special::after {
       -ms-transform: translateY(-25%);
           transform: translateY(-25%);
   display: inline-block;
+}
+.section--prog {
+  background: var(--brand-darkestGrey);
+  padding: 6rem 0 4rem;
+}
+.section--prog iframe {
+  width: 100%;
 }
 .section--ce {
   background: var(--brand-darkestGrey);
