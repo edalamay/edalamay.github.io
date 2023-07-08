@@ -34,21 +34,32 @@
 	// 	resizeNav();
 	// });
 	var menuBtn = $('#menu-btn'),
-		navWrap = $('.mobileNav');
-
-	menuBtn.click(function(){
+		navWrap = $('.mobileNav'),
+		anchor = $('.mobileNav .primary a[href*="#"');
+	function navConditional(thisObj) {
 		if ( $('body').hasClass('nav-open') ) {
-			$(this).removeClass('open');
+			$(thisObj).removeClass('open');
 			$('body').removeClass('nav-open');
 			$('#header').removeClass('nav-open');
 			bodyScrollLock.enableBodyScroll(navWrap);
 		} else {
-			$(this).addClass('open');
+			$(thisObj).addClass('open');
 			$('body').addClass('nav-open');
 			$('#header').addClass('nav-open');
 			bodyScrollLock.disableBodyScroll(navWrap);
 		}
+	}
+	menuBtn.click( function(){
+		navConditional(this);
 	});
+	$(window).resize(function() {
+		if (window.outerWidth < 768) {
+			anchor.click( function(){
+				navConditional(menuBtn);
+			});
+		}
+	});
+	
 
 // header video
 //===========================================
@@ -187,8 +198,8 @@
 	}
 
 	async function getStreams() {
-		// const users = ['warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
-		const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered','creationdefaced']; // live array
+		const users = ['soap','adeenthequeen','veraneka','eyelashTV','warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
+		// const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered','creationdefaced']; // live array
 		const endpoint = "https://api.twitch.tv/helix/streams?user_login="+users.join('&user_login=');
 
 		let authorizationObject = await getTwitchAuthorization();

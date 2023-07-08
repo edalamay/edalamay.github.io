@@ -66,7 +66,7 @@
 			</div>
 		</nav>
 	</header>
-	<main id="main">
+	<main id="main" class="navAnimate">
 		<section class="section section--banner">
 			<div class="background">
 				<div id="ytPlayer"></div>
@@ -77,7 +77,7 @@
 				<h1 class="h1">
 					<img src="img/commit_logo.svg" alt="Commit Logo"><span class="hidden">Commit</span>
 				</h1>
-				<h2>Stormrage-US's Top<small>-ish</small> CE Raiding Guild</h2>
+				<h2>Stormrage-US's Top<small>-ish</small><br > CE Raiding Guild</h2>
 				<a href="https://guildsofwow.com/commit/recruitment" target="_blank" rel="noopener" class="cta">Join Us</a>
 			</div>
 		</section>
@@ -92,19 +92,17 @@
 			<div id="streams" class="hide"></div>
 			<div class="container">
 				<h2 class="special">Streams</h2>
-				<div class="streamers"></div>
 				<div id="twitch">
 					<h3 class="noStreams"><img src="img/sadpepe.png" alt="sadpepe">nobody is streaming<img src="img/sadpepe.png" alt="sadpepe"></h3>
 				</div>
+				<div class="streamers"></div>
 			</div>
 		</section>
 	</main>
-	<footer id="footer">
+	<footer id="footer" class="navAnimate">
 		<div class="container">
 			<div class="grid">
-				<div class="logo">
-					<img src="img/commit_logo.svg" alt="Commit Logo">
-				</div>
+				<img class="logo" src="img/commit_logo.svg" alt="Commit Logo">
 				<ul class="footer-nav">
 					<li><a href="#cutting-edge">Cutting Edge</a></li>
 					<li><a href="#streams">Streams</a></li>
@@ -131,6 +129,8 @@
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
-	<script src="js/app.js?v=0.5.1"></script>
+	<script src="/js/bodyScrollLock.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js?v=0.5.2"></script>
 </body>
 </html>

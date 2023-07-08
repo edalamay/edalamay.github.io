@@ -31,6 +31,7 @@ $breakpoints: $grid-breakpoints;
 	font-size: 62.5%;
 	// nav
 	--navSpeed: 200ms;
+	--mobileNavWidth: 200px;
 }
 body {
 	--navHeight: 8rem;
@@ -62,6 +63,21 @@ body {
 		// --navHeight: 6rem;
 		--bg: var(--brand-blue);
 	}
+	// transition: 100ms var(--standard-ease);
+	.navAnimate {
+		transition: var(--nav-timing) var(--standard-ease);
+	}
+	&.nav-open {
+		.navAnimate {
+			transform: translateX(calc(var(--mobileNavWidth) * -1));
+			// transform: translateX(var(--mobileNavWidth));
+		}
+		#header {
+			.mobileNav {
+				// transform: translateX(0);
+			}
+		}
+	}
 }
 .cta {
 	--skewAngle: 5%;
@@ -79,25 +95,32 @@ body {
 	clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%,0 100%);
 	transform: background 100ms var(--standard-ease);
 	overflow: hidden;
+	@include media('<xl') {
+		padding: 0.9rem 2rem;
+	}
+	@include media('<lg') {
+		font-size: 2rem;
+	}
 	&::before {
 		content: '';
 		display: block;
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		width: 120%;
+		height: 120%;
 		background: var(--brand-purple);
+		background: linear-gradient(95deg, var(--brand-purple) 85%, var(--brand-blue) 100%);
 		z-index: -1;
 		transform-origin: left;
 		transition: transform 200ms var(--standard-ease);
-		transform: translateX(-100%);
+		transform: translateX(-120%);
 		clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%,0 100%);
 	}
 	&:hover {
 		// background: darken($brand-blue,10%);
 		&::before {
-			transform: translateX(0);
+			transform: translateX(-5%);
 		}
 	}
 }
@@ -119,6 +142,12 @@ h2.special {
 	font-size: 3.6rem;
 	font-weight: var(--text-semi-bold);
 	margin-bottom: 4rem;
+	@include media('<md') {
+		font-size: 3rem;
+	}
+	@include media('<xsm') {
+		font-size: 2.6rem;
+	}
 	&::before,
 	&::after {
 		content: '';
@@ -173,15 +202,14 @@ h2.special {
 	height: var(--navHeight);
 	transition: 100ms var(--standard-ease);
 	@include media('<md') {
+		position: sticky;
+		top: 0;
 		background: var(--brand-blue) !important;
 		.mobile-bg {
 			display: block;
 		}
 		&.nav-open {
 			.mobileNav {
-				// opacity: 1;
-				// visibility: visible;
-				// pointer-events: all;
 				transform: translateX(0);
 			}
 			.mobile-bg {
@@ -220,10 +248,12 @@ h2.special {
 		}
 		.logo {
 			display: flex;
-			width: 150px;
 			margin-right: auto;
-			@include media('<md') {
-				width: 130px;
+			img {
+				width: 150px;
+				@include media('<md') {
+					width: 130px;
+				}
 			}
 		}
 		#menu-btn {
@@ -232,10 +262,13 @@ h2.special {
 			}
 			display: block;
 			position: relative;
-			width: 50px;
-			height: 50px;
-			padding: 15px 10px;
-			float: left;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			// width: 50px;
+			// height: 50px;
+			// padding: 15px 10px;
+			// float: left;
 			cursor: pointer;
 			transform: rotate(0);
 			transition: var(--nav-timing) var(--standard-ease);
@@ -247,9 +280,9 @@ h2.special {
 			span {
 				display: block;
 				background: $white;
-				height: 2px;
+				height: 4px;
 				margin-bottom: 7px;
-				width: 30px;
+				width: 38px;
 				transition: var(--nav-timing) var(--standard-ease);
 				transform-origin: right;
 				&:nth-child(1) {
@@ -268,13 +301,15 @@ h2.special {
 				span {
 					transform-origin: inherit;
 					&:nth-child(1) {
-						transform: rotate(-45deg) translate(-10px, -4px) scaleX(.5)
+						// transform: rotate(-45deg) translate(-10px, -4px) scaleX(.5)
+						transform: rotate(-45deg) translate(-14px, -6px) scaleX(.5)
 					}
 					&:nth-child(2) {
 						transform: scaleX(1)
 					}
 					&:nth-child(3) {
-						transform: rotate(45deg) translate(-10px, 4px) scaleX(.5);
+						// transform: rotate(45deg) translate(-10px, 4px) scaleX(.5);
+						transform: rotate(45deg) translate(-14px, 6px) scaleX(.5);
 					}
 				}
 			}
@@ -284,25 +319,23 @@ h2.special {
 			@include media('>=md') {
 				flex-direction: row;
 				align-items: center;
+				height: 100%;
 			}
 			@include media('<md') {
-				--width: 200px;
 				flex-direction: column;
 				position: fixed;
 				top: var(--navHeight);
 				right: 0;
 				height: calc((var(--vh, 1vh) * 100) - var(--navHeight));
-				width: var(--width);
+				width: var(--mobileNavWidth);
 				background: darken($brand-blue,15%);
 				overflow: hidden;
 				z-index: 1;
 				padding: 2rem 0;
+				overflow: hidden;
 
 				transition: var(--nav-timing) var(--standard-ease);
-				// opacity: 0;
-				// visibility: hidden;
-				// pointer-events: none;
-				transform: translateX(var(--width));
+				transform: translateX(var(--mobileNavWidth));
 			}
 		}
 		ul {
@@ -414,11 +447,15 @@ h2.special {
 		place-items: center;
 		aspect-ratio: 16/8;
 		overflow: hidden;
+		@include media('>=md') {
+			padding-top: var(--navHeight);
+		}
 		@include media('<xl') {
 			aspect-ratio: 16/10.5;
 		}
 		@include media('<lg') {
-			aspect-ratio: 16/10.5;
+			// aspect-ratio: 16/10.5;
+			aspect-ratio: 16/12;
 		}
 		@include media('<md') {
 			aspect-ratio: 1/1;
@@ -426,8 +463,8 @@ h2.special {
 		@include media('<sm') {
 			aspect-ratio: 1/1.25;
 		}
-		@include media('<xs') {
-			aspect-ratio: 1/1.6;
+		@include media('<xsm') {
+			aspect-ratio: 1/1.45;
 		}
 		// .bg {
 		// 	position: absolute;
@@ -468,15 +505,21 @@ h2.special {
 				object-fit: cover;
 				transform: scale(1.2); // up-scaling the video to crop out the YT logo in the bottom-right
 				transform-origin: center;
+				@include media('<lg') {
+					transform: scale(1.4);
+				}
 				@include media('<md') {
 					transform: scale(1.8);
 				}
 				@include media('<sm') {
 					transform: scale(2.3);
 				}
-				@include media('<xs') {
-					transform: scale(2.9);
+				@include media('<xsm') {
+					transform: scale(2.6);
 				}
+			}
+			img {
+				transform: scale(1);
 			}
 		}
 		.content {
@@ -484,9 +527,23 @@ h2.special {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			padding: 0 2vw;
 			h1 {
 				img {
-					width: clamp(200px,20vw,400px);
+					width: clamp(330px,25vw,400px);
+					// width: 400px;
+					@include media('<xxl') {
+						width: 300px;
+					}
+					@include media('<xl') {
+						width: 270px;
+					}
+					@include media('<sm') {
+						width: 250px;
+					}
+					@include media('<xs') {
+						width: clamp(220px, 25vw,250px);
+					}
 				}
 				.hidden {
 					font-size: 0;
@@ -502,6 +559,24 @@ h2.special {
 					weight: var(--text-semi-bold);
 				};
 				margin-bottom: 2rem;
+				text-align: center;
+				@include media('>=sm') {
+					br {
+						display: none;
+					}
+				}
+				@include media('<xxl') {
+					font-size: 3.6rem;
+				}
+				@include media('<xl') {
+					font-size: 3.3rem;
+				}
+				@include media('<lg') {
+					font-size: 3rem;
+				}
+				@include media('<xs') {
+					font-size: 2.5rem;
+				}
 				small {
 					font-size: 1.5rem;
 					transform: translateY(-25%);
@@ -512,11 +587,30 @@ h2.special {
 	}
 	&--ce {
 		background: var(--brand-darkestGrey);
-		padding: 6rem 0 10rem;
+		padding: 6rem 0 8rem;
+		@include media('<xxl') {
+			padding: 6rem 0 6rem;
+		}
+		@include media('<sm') {
+			padding: 6rem 0 4rem;
+		}
 		.ce-grid {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			grid-gap: 5rem 2rem;
+			@include media('<lg') {
+				grid-template-columns: 1fr 1fr;
+			}
+			@include media('<md') {
+				grid-gap: 4rem 1rem;
+			}
+			@include media('<sm') {
+				grid-gap: 3rem 0.25rem;
+			}
+			@include media('<xsm') {
+				grid-template-columns: 1fr;
+				padding: 0 calc(2vw + 3vw);
+			}
 			.block {
 				--skewAngle: 10%;
 				--skewTL: calc(0% + var(--skewAngle));
@@ -583,6 +677,12 @@ h2.special {
 				h3 {
 					font-size: 3.2rem;
 					margin: 0;
+					@include media('<md') {
+						font-size: 2.9rem;
+					}
+					@include media('<sm','>=xsm') {
+						font-size: 2.5rem;
+					}
 					&::after {
 						content: '';
 						display: block;
@@ -595,6 +695,12 @@ h2.special {
 				time {
 					font-size: 2.4rem;
 					font-weight: var(--text-semi-bold);
+					@include media('<md') {
+						font-size: 2.1rem;
+					}
+					@include media('<sm','>=xsm') {
+						font-size: 1.9rem;
+					}
 				}
 				.rank {
 					display: flex;
@@ -619,10 +725,25 @@ h2.special {
 	&--streams {
 		background: var(--brand-darkestGrey);
 		padding: 6rem 0;
+		@include media('<xl') {
+			padding: 4rem 0 6rem;
+		}
+		@include media('<lg') {
+			padding: 4rem 0;
+		}
 		.streamers {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			grid-gap: 2rem;
+			&:not(:empty) {
+				margin-bottom: 4rem;
+			}
+			@include media('<xl') {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			@include media('<md') {
+				grid-template-columns: repeat(2, 1fr);
+			}
 			.streamer {
 				position: relative;
 				display: flex;
@@ -631,6 +752,14 @@ h2.special {
 				align-items: center;
 				justify-content: space-between;
 				cursor: pointer;
+				display: grid;
+				grid-template-columns: 1fr auto;
+				@include media('<xxl') {
+					padding: 1.5rem;
+				}
+				@include media('<xsm') {
+					padding: 1.5rem 1rem;
+				}
 				&.active,
 				&:hover {
 					border-color: var(--brand-blue);
@@ -652,6 +781,7 @@ h2.special {
 					--color: rgba(0 0 0 / 0.6);
 					color: white;
 					position: relative;
+					margin: 0;
 					text-shadow: var(--throw) var(--throw) var(--spread) var(--color),
 								var(--nt) var(--throw) var(--spread) var(--color),
 								var(--throw) var(--nt) var(--spread) var(--color),
@@ -659,9 +789,27 @@ h2.special {
 				}
 				&--name {
 					font-size: 2.2rem;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					@include media('<lg') {
+						font-size: 2rem;
+					}
+					@include media('<sm') {
+						font-size: 1.8rem;
+					}
+					@include media('<sm') {
+						font-size: 1.6rem;
+					}
+					@include media('<xs') {
+						font-size: 1.5rem;
+					}
 				}
 				&--views {
 					font-size: 1.6rem;
+					padding-left: 1rem;
+					@include media('<xsm') {
+						font-size: 1.3rem;
+					}
 					@keyframes flash {
 						from {
 							opacity: 0.5;
@@ -671,10 +819,11 @@ h2.special {
 						}
 					}
 					&::before {
+						--size: 1rem;
 						content: '';
 						display: inline-block;
-						width: 1rem;
-						height: 1rem;
+						width: var(--size);
+						height: var(--size);
 						background: red;
 						border-radius: 50%;
 						// animation: flash 300ms var(--standard-ease);
@@ -683,6 +832,9 @@ h2.special {
 						animation-timing-function: linear;
 						animation-iteration-count: infinite;
 						animation-direction: alternate;
+						@include media('<xsm') {
+							--size: .9rem;
+						}
 					}
 				}
 			}
@@ -692,7 +844,7 @@ h2.special {
 			// padding-bottom: 56.25%; /* 16:9 */
 			aspect-ratio: 16/9;
 			width: 100%;
-			margin: 3rem auto;
+			margin: 0 auto 3rem;
 			background: linear-gradient(45deg, rgba(52,131,236,1) 0%, rgba(100,81,183,1) 100%);
 			display: grid;
 			place-content: center;
@@ -727,16 +879,41 @@ h2.special {
 	.grid {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		grid-gap: 4rem;
+		grid-gap: 6rem;
+		@include media('<md') {
+			grid-template-columns: 1fr 1fr;
+		}
+		@include media('<xsm') {
+			display: flex;
+			flex-direction: column-reverse;
+			align-items: center;
+		}
 	}
 	.logo {
 		width: 330px;
+		@include media('<md','>=xsm') {
+			// width: 200px;
+			width: 100%;
+		}
+		@include media('<xsm') {
+			width: 230px;
+		}
 	}
 	.footer-nav {
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
+		margin: 0;
+		padding: 8.5rem 0 0;
+		@include media('<md','>=xsm') {
+			// padding: 4.8rem 0 0;
+			padding: 24% 0 0;
+		}
+		@include media('<xsm') {
+			padding: 0;
+			text-align: center;
+		}
 		li {
 			a {
 				position: relative;
@@ -748,6 +925,15 @@ h2.special {
 					size: 2.2rem;
 					weight: var(--text-semi-bold);
 				};
+				&::before {
+					content: '';
+					position: absolute;
+					top: 12px;
+					right: 0;
+					height: 1px;
+					width: 500px;
+					// background: red;
+				}
 				&:not(.img) {
 					@extend .linkUnderline;
 				}
@@ -792,6 +978,10 @@ h2.special {
 		border-top: 2px solid var(--brand-grey);
 		padding: 2rem 0 1.5rem;
 		margin-top: 5rem;
+		@include media('<xsm') {
+			text-align: center;
+			font-size: 1.4rem;
+		}
 	}
 }
 

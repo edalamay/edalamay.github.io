@@ -43,16 +43,15 @@ function cssLibraries() {
 }
 function jsLibraries() {
 	return src([
-			"node_modules/bootstrap/dist/js/bootstrap.min.js"
+			"node_modules/bootstrap/dist/js/bootstrap.min.js",
+			"node_modules/body-scroll-lock/lib/bodyScrollLock.min.js"
+
 		])
 		.pipe(dest("docs/js"));
 }
 // Build JS
 function js() {
-	return src([
-			"node_modules/bootstrap/dist/js/bootstrap.min.js",
-			"resources/js/app.js"
-		])
+	return src("resources/js/app.js")
 		.pipe(concat("app.js"))
 		.pipe(dest("docs/js"))
 		.pipe(terser())
