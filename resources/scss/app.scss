@@ -938,8 +938,12 @@ h2.special {
 					@extend .linkUnderline;
 				}
 				&.img {
-					margin-right: 1rem;
 					margin-top: 1rem;
+					@include media('>=xsm') {
+						&:not(:last-of-type) {
+							margin-right: 1rem;
+						}
+					}
 					svg {
 						fill: white;
 						height: 3rem;

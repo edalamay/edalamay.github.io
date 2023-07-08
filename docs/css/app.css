@@ -1165,8 +1165,12 @@ h2.special::after {
   width: 500px;
 }
 #footer .footer-nav li a.img {
-  margin-right: 1rem;
   margin-top: 1rem;
+}
+@media (min-width: 480px) {
+  #footer .footer-nav li a.img:not(:last-of-type) {
+    margin-right: 1rem;
+  }
 }
 #footer .footer-nav li a.img svg {
   fill: white;
