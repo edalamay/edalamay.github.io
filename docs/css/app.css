@@ -731,8 +731,38 @@ h2.special::after {
   background: var(--brand-darkestGrey);
   padding: 6rem 0 4rem;
 }
+.section--prog .iframe--wrap {
+  position: relative;
+}
+.section--prog #loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  -webkit-animation: spin 1s ease-in-out infinite;
+          animation: spin 1s ease-in-out infinite;
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 .section--prog iframe {
   width: 100%;
+  position: relative;
 }
 .section--ce {
   background: var(--brand-darkestGrey);
