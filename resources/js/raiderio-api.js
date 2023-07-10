@@ -1,12 +1,3 @@
-/* example URLs
-
-guild profile
-https://raider.io/api/v1/guilds/profile?region=us&realm=stormrage&name=commit&fields=raid_progression%2Craid_rankings
-
-guild boss kills
-https://raider.io/api/v1/guilds/boss-kill?region=us&realm=stormrage&guild=commit&raid=sepulcher-of-the-first-ones&boss=the-jailer&difficulty=mythic
-
-*/
 // Globals
 const region = 'us',
 	  realm = 'stormrage',
@@ -29,6 +20,7 @@ const bosses = [
 	'sire-denathrius',
 	'nzoth-the-corruptor'
 ];
+
 // Endpoints
 // const guildProfile = `https://raider.io/api/v1/guilds/profile?region=${region}&realm=${realm}&name=${guild}&fields=raid_progression%2Craid_rankings`,
 // const bossRanking = `https://raider.io/api/v1/raiding/boss-rankings?raid=${raid}&boss=${boss}&difficulty=${difficulty}&region=${region}&realm=${realm}`;
