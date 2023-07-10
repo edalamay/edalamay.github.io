@@ -309,13 +309,13 @@
 		let output = data.map(function(kill) {
 			if (kill.date) {
 				return `
-					<a href="${kill.externalUrl}" target="_blank" rel="noopener" class="block">
+					<a id="${kill.slug}" href="${kill.externalUrl}" target="_blank" rel="noopener" class="block">
 						<div class="bg">
 							<img src="${kill.img}" alt="${kill.boss}">
 							<div class="overlay"></div>
 						</div>
 						<h3>${kill.boss}</h3>
-						<time>${kill.date}</time>
+						<time class="date">${kill.date}</time>
 						<div class="rank">${kill.rank}</div>
 					</a>
 				`;
@@ -332,3 +332,10 @@
 		.then((data) => {
 			createKillBlocks(data);
 		});
+
+
+
+
+
+
+
