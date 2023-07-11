@@ -79,7 +79,7 @@
 	const ytTag = document.createElement('script');
 	ytTag.src = "https://www.youtube.com/iframe_api";
 
-	const firstScriptTag = document.getElementsByTagName('script')[0];
+	const firstScriptTag = document.getElementById('mainjs');
 	firstScriptTag.parentNode.insertBefore(ytTag, firstScriptTag);
 
 	let player;
@@ -144,6 +144,7 @@
 			}
 		});
 	}
+	
 
 // nav scroll effect
 //===========================================

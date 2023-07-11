@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-mix.js([
+mix.babel([
 		'node_modules/bootstrap/dist/js/bootstrap.min.js',
 		'node_modules/body-scroll-lock/lib/bodyScrollLock.min.js',
 		'resources/js/app.js',
