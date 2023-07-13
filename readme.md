@@ -1,6 +1,7 @@
-# Gulp 4 Boilerplate
+# Commit - A Wow Raiding Guild Website
 
-A boilerplate project directory for static websites, utilizing Gulp 4 for asset compiling. Utilizes Bootstrap 5 for easy & quick templating.
+Wanted to play with some new JS ideas and concepts, and figured making a website for a WoW raiding guild I'm a part of was a fun place to start.
+Created some simple branding, and then set up this site. Site includes API's from Twitch & Raider.io.
 
 ## Installation
 
@@ -10,14 +11,20 @@ Open the directory in terminal and run:
 npm i
 ```
 
-## Usage
-Simply run gulp to compile your assets and deploy a localhost environment for testing:
+## Build Process
+Current setup utilizes [Webpack](https://webpack.js.org/) and [Laravel-Mix](https://laravel-mix.com/), with [Browser-sync](https://www.npmjs.com/package/browser-sync) for local development.
+To spin up a dev env, just run:
 ```bash
-gulp
+npm run watch
+```
+And to run a prod build, you can run:
+```bash
+npm run prod
 ```
 
 ## Contributing
-Feel free to make any adjustments or edits to help improve this template for future use.
+Send me a message on Discord, and I'll look into it!
+@edalamay
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
