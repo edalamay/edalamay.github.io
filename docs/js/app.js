@@ -3647,8 +3647,8 @@ function _getStreams() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          users = ['soap', 'adeenthequeen', 'veraneka', 'eyelashTV', 'warcraft', 'naguura', 'sco', 'naowh', 'gingitv', 'hazelnuttygames', 'cdewx', 'fragnance']; //testing array
-          // const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered','creationdefaced']; // live array
+          // const users = ['soap','adeenthequeen','veraneka','eyelashTV','warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
+          users = ['samthepackleader', 'bowett', 'edalamay', 'asherrthered']; // live array
           endpoint = "https://api.twitch.tv/helix/streams?user_login=" + users.join('&user_login=');
           _context.next = 4;
           return getTwitchAuthorization();
