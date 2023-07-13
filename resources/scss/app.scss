@@ -725,6 +725,54 @@ h2.special {
 						display: block;
 						position: relative;
 					}
+					.killDate {
+						&--tooltip {
+							position: absolute;
+							top: 0;
+							width: max-content;
+							left: 50%;
+							transform: translateX(-50%);
+							color: white;
+							text-align: center;
+							font-size: 14px;
+							background-color: #111;
+							border: 1px solid #222;
+							border-radius: 3px;
+							box-shadow: 0 1px 8px rgba(0,0,0,.5);
+							padding: 5px 10px;
+							transition: 150ms ease;
+
+							opacity: 0;
+							pointer-events: none;
+							user-select: none;
+
+							transform: translate(-50%, -100%);
+							&::after {
+								content: '';
+								display: block;
+								position: absolute;
+								width: 20px;
+								height: 10px;
+								// background: black;
+								transition: 150ms ease;
+								background-color: #111;
+								border: 1px solid #222;
+								box-shadow: 0 1px 8px rgba(0,0,0,.5);
+								top: 100%;
+								left: 50%;
+								transform: translate(-50%, calc(-100% + 10px));
+								clip-path: polygon(0 0, 100% 0, 50% 100%);
+							}
+						}
+						&:hover {
+							.killDate--tooltip {
+								opacity: 1;
+								pointer-events: all;
+								user-select: all;
+								transform: translate(-50%, calc(-100% - 10px));
+							}
+						}
+					}
 					.video {
 						// position: absolute;
 						// left: 50%;
@@ -745,7 +793,8 @@ h2.special {
 						img {
 							height: 20px;
 							width: auto;
-							box-shadow: 0 0 15px 5px rgba(0 0 0 / .75);
+							// box-shadow: 0 0 15px 5px rgba(0 0 0 / .75);
+							filter: drop-shadow(0 0 5px #000);
 						}
 					}
 			}

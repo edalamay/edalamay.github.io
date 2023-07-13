@@ -35,6 +35,17 @@ const progBosses = [
 	'scalecommander-sarkareth'
 ];
 
+function makeTitle(slug) {
+	var words = slug.split('-');
+
+	for (var i = 0; i < words.length; i++) {
+		var word = words[i];
+		words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+	}
+
+	return words.join(' ');
+}
+
 // Add kill data to current prog bosses
 //===========================================
 function updateProgData() {
@@ -42,15 +53,18 @@ function updateProgData() {
 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
 
 		const container = document.querySelector(`.raidProg .boss[data-boss=${boss}]`),
-			  infoBlock = container.querySelector('.killDate');
+			  infoBlock = container.querySelector('.killDate--tooltip');
+
+		let bossName = makeTitle(boss);
 		fetch(bossEndpoint)
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.kill) {
 					let killDate = new Date(data.kill.defeatedAt).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) ;
 					container.classList.add('defeated');
-					infoBlock.setAttribute('data-tooltip',`Killed on ${killDate}`);
-					infoBlock.setAttribute('data-position','top');
+					// infoBlock.setAttribute('data-tooltip',`${bossName} Killed on ${killDate}`);
+					// infoBlock.setAttribute('data-position','top');
+					infoBlock.innerHTML = `${bossName} <br>Killed on ${killDate}`;
 				}
 			});
 

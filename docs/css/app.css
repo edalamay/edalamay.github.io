@@ -747,6 +747,53 @@ h2.special::after {
   display: block;
   position: relative;
 }
+.section--prog .raidProg .boss .killDate--tooltip {
+  position: absolute;
+  top: 0;
+  width: -moz-max-content;
+  width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 3px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  transition: 150ms ease;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  transform: translate(-50%, -100%);
+}
+.section--prog .raidProg .boss .killDate--tooltip::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  transition: 150ms ease;
+  background-color: #111;
+  border: 1px solid #222;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, calc(-100% + 10px));
+  -webkit-clip-path: polygon(0 0, 100% 0, 50% 100%);
+          clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.section--prog .raidProg .boss .killDate:hover .killDate--tooltip {
+  opacity: 1;
+  pointer-events: all;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+  transform: translate(-50%, calc(-100% - 10px));
+}
 .section--prog .raidProg .boss .video {
   display: flex;
   align-items: center;
@@ -763,7 +810,7 @@ h2.special::after {
 .section--prog .raidProg .boss .video img {
   height: 20px;
   width: auto;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.75);
+  filter: drop-shadow(0 0 5px #000);
 }
 .section--prog .iframe--wrap {
   position: relative;

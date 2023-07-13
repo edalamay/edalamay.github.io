@@ -3647,8 +3647,8 @@ function _getStreams() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          // const users = ['soap','adeenthequeen','veraneka','eyelashTV','warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
-          users = ['samthepackleader', 'bowett', 'edalamay', 'asherrthered', 'creationdefaced']; // live array
+          users = ['soap', 'adeenthequeen', 'veraneka', 'eyelashTV', 'warcraft', 'naguura', 'sco', 'naowh', 'gingitv', 'hazelnuttygames', 'cdewx', 'fragnance']; //testing array
+          // const users = ['samthepackleader','bowett', 'edalamay', 'asherrthered','creationdefaced']; // live array
           endpoint = "https://api.twitch.tv/helix/streams?user_login=" + users.join('&user_login=');
           _context.next = 4;
           return getTwitchAuthorization();
@@ -3753,7 +3753,7 @@ function createKillBlocks(data) {
 }
 function createProgBlocks(data) {
   var output = data.map(function (boss) {
-    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".png\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\"></div>\n\t\t\t\t\t\t").concat(function () {
+    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".png\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\">\n\t\t\t\t\t\t\t<div class=\"killDate--tooltip\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t").concat(function () {
       if (boss.video) {
         return "\n\t\t\t\t\t\t\t\t\t<a class=\"video\" href=\"https://www.youtube.com/watch?v=".concat(boss.video, "\" target=\"_blank\" rel=\"noopener\" data-tooltip=\"Watch Kill Video\" data-position=\"top\"><img src=\"/img/youtube.svg\" alt=\"YouTube\"></a>\n\t\t\t\t\t\t\t\t");
       } else {
@@ -3785,6 +3785,14 @@ var raids = ['aberrus-the-shadowed-crucible', 'vault-of-the-incarnates', 'sepulc
 var bosses = ['scalecommander-sarkareth', 'raszageth-the-stormeater', 'the-jailer', 'sylvanas-windrunner', 'sire-denathrius', 'nzoth-the-corruptor'];
 var progRaid = 'aberrus-the-shadowed-crucible';
 var progBosses = ['kazzara-the-hellforged', 'the-amalgamation-chamber', 'the-forgotten-experiments', 'assault-of-the-zaqali', 'rashok-the-elder', 'the-vigilant-steward-zskarn', 'magmorax', 'echo-of-neltharion', 'scalecommander-sarkareth'];
+function makeTitle(slug) {
+  var words = slug.split('-');
+  for (var i = 0; i < words.length; i++) {
+    var word = words[i];
+    words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  return words.join(' ');
+}
 
 // Add kill data to current prog bosses
 //===========================================
@@ -3792,7 +3800,8 @@ function updateProgData() {
   progBosses.forEach(function (boss, index) {
     var bossEndpoint = "https://raider.io/api/v1/guilds/boss-kill?region=".concat(region, "&realm=").concat(realm, "&guild=").concat(guild, "&raid=").concat(progRaid, "&boss=").concat(boss, "&difficulty=").concat(difficulty);
     var container = document.querySelector(".raidProg .boss[data-boss=".concat(boss, "]")),
-      infoBlock = container.querySelector('.killDate');
+      infoBlock = container.querySelector('.killDate--tooltip');
+    var bossName = makeTitle(boss);
     fetch(bossEndpoint).then(function (response) {
       return response.json();
     }).then(function (data) {
@@ -3803,8 +3812,9 @@ function updateProgData() {
           day: "numeric"
         });
         container.classList.add('defeated');
-        infoBlock.setAttribute('data-tooltip', "Killed on ".concat(killDate));
-        infoBlock.setAttribute('data-position', 'top');
+        // infoBlock.setAttribute('data-tooltip',`${bossName} Killed on ${killDate}`);
+        // infoBlock.setAttribute('data-position','top');
+        infoBlock.innerHTML = "".concat(bossName, " <br>Killed on ").concat(killDate);
       }
     });
   });
