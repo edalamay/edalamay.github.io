@@ -748,6 +748,9 @@ h2.special::after {
   display: block;
   position: relative;
 }
+.section--prog .raidProg .boss .killDate.hidden {
+  display: none;
+}
 .section--prog .raidProg .boss .killDate--tooltip {
   position: absolute;
   top: 0;

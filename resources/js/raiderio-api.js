@@ -53,6 +53,7 @@ function updateProgData() {
 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
 
 		const container = document.querySelector(`.raidProg .boss[data-boss=${boss}]`),
+			  infoWrap = container.querySelector('.killDate'),
 			  infoBlock = container.querySelector('.killDate--tooltip');
 
 		let bossName = makeTitle(boss);
@@ -64,6 +65,7 @@ function updateProgData() {
 					container.classList.add('defeated');
 					// infoBlock.setAttribute('data-tooltip',`${bossName} Killed on ${killDate}`);
 					// infoBlock.setAttribute('data-position','top');
+					infoWrap.classList.remove('hidden');
 					infoBlock.innerHTML = `${bossName} <br>Killed on ${killDate}`;
 				}
 			});

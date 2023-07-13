@@ -727,6 +727,9 @@ h2.special {
 						position: relative;
 					}
 					.killDate {
+						&.hidden {
+							display: none;
+						}
 						&--tooltip {
 							position: absolute;
 							top: 0;

@@ -3753,7 +3753,7 @@ function createKillBlocks(data) {
 }
 function createProgBlocks(data) {
   var output = data.map(function (boss) {
-    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".png\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\">\n\t\t\t\t\t\t\t<div class=\"killDate--tooltip\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t").concat(function () {
+    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".png\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate hidden\">\n\t\t\t\t\t\t\t<div class=\"killDate--tooltip\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t").concat(function () {
       if (boss.video) {
         return "\n\t\t\t\t\t\t\t\t\t<a class=\"video\" href=\"https://www.youtube.com/watch?v=".concat(boss.video, "\" target=\"_blank\" rel=\"noopener\" data-tooltip=\"Watch Kill Video\" data-position=\"top\"><img src=\"/img/youtube.svg\" alt=\"YouTube\"></a>\n\t\t\t\t\t\t\t\t");
       } else {
@@ -3800,6 +3800,7 @@ function updateProgData() {
   progBosses.forEach(function (boss, index) {
     var bossEndpoint = "https://raider.io/api/v1/guilds/boss-kill?region=".concat(region, "&realm=").concat(realm, "&guild=").concat(guild, "&raid=").concat(progRaid, "&boss=").concat(boss, "&difficulty=").concat(difficulty);
     var container = document.querySelector(".raidProg .boss[data-boss=".concat(boss, "]")),
+      infoWrap = container.querySelector('.killDate'),
       infoBlock = container.querySelector('.killDate--tooltip');
     var bossName = makeTitle(boss);
     fetch(bossEndpoint).then(function (response) {
@@ -3814,6 +3815,7 @@ function updateProgData() {
         container.classList.add('defeated');
         // infoBlock.setAttribute('data-tooltip',`${bossName} Killed on ${killDate}`);
         // infoBlock.setAttribute('data-position','top');
+        infoWrap.classList.remove('hidden');
         infoBlock.innerHTML = "".concat(bossName, " <br>Killed on ").concat(killDate);
       }
     });
