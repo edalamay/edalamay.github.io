@@ -533,6 +533,7 @@ h2.special {
 }
 .section {
 	position: relative;
+	overflow: hidden;
 	&--banner {
 		// height: 80vh;
 		// aspect-ratio: 64/25;
@@ -747,6 +748,9 @@ h2.special {
 							user-select: none;
 
 							transform: translate(-50%, -100%);
+							@include media('<sm') {
+								font-size: 12px;
+							}
 							&::after {
 								content: '';
 								display: block;
