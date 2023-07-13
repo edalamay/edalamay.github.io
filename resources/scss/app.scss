@@ -94,6 +94,9 @@ body {
 		background-color: #111;
 		border: 1px solid #222;
 		box-shadow: 0 1px 8px rgba(0,0,0,.5);
+		@include media('<sm') {
+			font-size: 12px;
+		}
 		&:hover {
 			pointer-events: all;
 		}
@@ -103,6 +106,9 @@ body {
 		padding: 5px 10px;
 		border-radius: 3px;
 		width: max-content;
+		@include media('<sm') {
+			padding: 4px 6px;
+		}
 	}
 	&::after {
 		content: "";

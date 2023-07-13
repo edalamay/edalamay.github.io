@@ -104,6 +104,11 @@ body.nav-open .navAnimate {
   border: 1px solid #222;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
+@media (max-width: 575px) {
+  [data-tooltip]::before, [data-tooltip]::after {
+    font-size: 12px;
+  }
+}
 [data-tooltip]::before:hover, [data-tooltip]::after:hover {
   pointer-events: all;
 }
@@ -113,6 +118,11 @@ body.nav-open .navAnimate {
   border-radius: 3px;
   width: -moz-max-content;
   width: max-content;
+}
+@media (max-width: 575px) {
+  [data-tooltip]::before {
+    padding: 4px 6px;
+  }
 }
 [data-tooltip]::after {
   content: "";
