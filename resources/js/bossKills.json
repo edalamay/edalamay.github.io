@@ -1,50 +1,101 @@
-[
-	{
-		"boss": "Sarkareth",
-		"slug": "scalecommander-sarkareth",
-		"date": "",
-		"rank": "",
-		"img": "/img/bosses/sarkareth.jpg",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/aberrus-the-shadowed-crucible/scalecommander-sarkareth"
-	},
-	{
-		"boss": "Raszageth",
-		"slug": "raszageth-the-stormeater",
-		"date": "April 6, 2023",
-		"rank": "US 353",
-		"img": "/img/bosses/raszageth.jpg",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/vault-of-the-incarnates/raszageth-the-stormeater"
-	},
-	{
-		"boss": "The Jailer",
-		"slug": "the-jailer",
-		"date": "July 22, 2022",
-		"rank": "US 374",
-		"img": "/img/bosses/jailer.jpg",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sepulcher-of-the-first-ones/the-jailer"
-	},
-	{
-		"boss": "Sylvanas",
-		"slug": "sylvanas-windrunner",
-		"date": "January 26, 2022",
-		"rank": "US 545",
-		"img": "/img/bosses/sylvanas.jpg",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sanctum-of-domination/sylvanas-windrunner"
-	},
-	{
-		"boss": "Sire Denathrius",
-		"slug": "sire-denathrius",
-		"date": "June 23, 2021",
-		"rank": "US 684",
-		"img": "/img/bosses/sire-denathrius.jpeg",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/castle-nathria/sire-denathrius"
-	},
-	{
-		"boss": "N'Zoth",
-		"slug": "nzoth-the-corruptor",
-		"date": "September 30, 2020",
-		"rank": "US 986",
-		"img": "/img/bosses/nzoth.webp",
-		"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/nyalotha-the-waking-city/nzoth-the-corruptor"
-	}
-]
+{
+	"ceKills": [
+		{
+			"boss": "Sarkareth",
+			"slug": "scalecommander-sarkareth",
+			"killed": false,
+			"img": "/img/bosses/sarkareth.jpg",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/aberrus-the-shadowed-crucible/scalecommander-sarkareth"
+		},
+		{
+			"boss": "Raszageth",
+			"slug": "raszageth-the-stormeater",
+			"killed": true,
+			"img": "/img/bosses/raszageth.jpg",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/vault-of-the-incarnates/raszageth-the-stormeater"
+		},
+		{
+			"boss": "The Jailer",
+			"slug": "the-jailer",
+			"killed": true,
+			"img": "/img/bosses/jailer.jpg",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sepulcher-of-the-first-ones/the-jailer"
+		},
+		{
+			"boss": "Sylvanas",
+			"slug": "sylvanas-windrunner",
+			"killed": true,
+			"img": "/img/bosses/sylvanas.jpg",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sanctum-of-domination/sylvanas-windrunner"
+		},
+		{
+			"boss": "Sire Denathrius",
+			"slug": "sire-denathrius",
+			"killed": true,
+			"img": "/img/bosses/sire-denathrius.jpeg",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/castle-nathria/sire-denathrius"
+		},
+		{
+			"boss": "N'Zoth",
+			"slug": "nzoth-the-corruptor",
+			"killed": true,
+			"date": "September 30, 2020",
+			"rank": "US 986",
+			"img": "/img/bosses/nzoth.webp",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/nyalotha-the-waking-city/nzoth-the-corruptor"
+		}
+	],
+	"progKills": [
+		{
+			"name": "Kazzara the Hellforged",
+			"slug": "kazzara-the-hellforged",
+			"raid": "aberrus-the-shadowed-crucible"
+		},
+		{
+			"name": "Assault of the Zaqali",
+			"slug": "assault-of-the-zaqali",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "i9i48HkqsTI"
+		},
+		{
+			"name": "The Amalgamation Chamber",
+			"slug": "the-amalgamation-chamber",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "=n3vu5nXulMc"
+		},
+		{
+			"name": "The-forgotten-experiments",
+			"slug": "the-forgotten-experiments",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "8w0SB-y2dVg"
+		},
+		{
+			"name": "Rashok the Elder",
+			"slug": "rashok-the-elder",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "8GswZby5YcY"
+		},
+		{
+			"name": "The Vigilant Steward Zskarn",
+			"slug": "the-vigilant-steward-zskarn",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "nAE93FiLXAM"
+		},
+		{
+			"name": "Magmorax",
+			"slug": "magmorax",
+			"raid": "aberrus-the-shadowed-crucible",
+			"video": "tFrYPKAsu-c"
+		},
+		{
+			"name": "Echo of Neltharion",
+			"slug": "echo-of-neltharion",
+			"raid": "aberrus-the-shadowed-crucible"
+		},
+		{
+			"name": "Scalecommander Sarkareth",
+			"slug": "scalecommander-sarkareth",
+			"raid": "aberrus-the-shadowed-crucible"
+		}
+	]
+}

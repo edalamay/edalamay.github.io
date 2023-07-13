@@ -3436,6 +3436,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 });
 
 // VH Hack for mobile web browsers -- making 100vh the same everywhere
+//===========================================
 /* 
 To use, set a css property using the new var in a calc. Ex:
 .class {
@@ -3740,7 +3741,7 @@ getStreams();
 var url = '/js/bossKills.json';
 function createKillBlocks(data) {
   var output = data.map(function (kill) {
-    if (kill.date) {
+    if (kill.killed == true) {
       return "\n\t\t\t\t\t<a id=\"".concat(kill.slug, "\" href=\"").concat(kill.externalUrl, "\" target=\"_blank\" rel=\"noopener\" class=\"block\">\n\t\t\t\t\t\t<div class=\"bg\">\n\t\t\t\t\t\t\t<img src=\"").concat(kill.img, "\" alt=\"").concat(kill.boss, "\">\n\t\t\t\t\t\t\t<div class=\"overlay\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<h3>").concat(kill.boss, "</h3>\n\t\t\t\t\t\t<time class=\"date\">").concat(kill.date, "</time>\n\t\t\t\t\t\t<div class=\"rank\">").concat(kill.rank, "</div>\n\t\t\t\t\t</a>\n\t\t\t\t");
     }
   }).join('');
@@ -3750,24 +3751,129 @@ function createKillBlocks(data) {
   // Create markup
   container.innerHTML = output;
 }
+function createProgBlocks(data) {
+  var output = data.map(function (boss) {
+    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".png\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\"></div>\n\t\t\t\t\t\t").concat(function () {
+      if (boss.video) {
+        return "\n\t\t\t\t\t\t\t\t\t<a class=\"video\" href=\"https://www.youtube.com/watch?v=".concat(boss.video, "\" target=\"_blank\" rel=\"noopener\" data-tooltip=\"Watch Kill Video\" data-position=\"top\"><img src=\"/img/youtube.svg\" alt=\"YouTube\"></a>\n\t\t\t\t\t\t\t\t");
+      } else {
+        return '';
+      }
+    }(), "\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t");
+  }).join('');
+
+  // Get the app element
+  var container = document.querySelector('.raidProg');
+  // Create markup
+  container.innerHTML = output;
+  updateProgData();
+}
 fetch(url).then(function (response) {
   return response.json();
 }).then(function (data) {
-  createKillBlocks(data);
+  createKillBlocks(data.ceKills);
+  createProgBlocks(data.progKills);
 });
 
 // Globals
+//===========================================
 var region = 'us',
   realm = 'stormrage',
   guild = 'commit',
   difficulty = 'mythic';
 var raids = ['aberrus-the-shadowed-crucible', 'vault-of-the-incarnates', 'sepulcher-of-the-first-ones', 'sanctum-of-domination', 'castle-nathria', 'nyalotha-the-waking-city'];
 var bosses = ['scalecommander-sarkareth', 'raszageth-the-stormeater', 'the-jailer', 'sylvanas-windrunner', 'sire-denathrius', 'nzoth-the-corruptor'];
+var progRaid = 'aberrus-the-shadowed-crucible';
+var progBosses = ['kazzara-the-hellforged', 'the-amalgamation-chamber', 'the-forgotten-experiments', 'assault-of-the-zaqali', 'rashok-the-elder', 'the-vigilant-steward-zskarn', 'magmorax', 'echo-of-neltharion', 'scalecommander-sarkareth'];
+
+// Add kill data to current prog bosses
+//===========================================
+function updateProgData() {
+  progBosses.forEach(function (boss, index) {
+    var bossEndpoint = "https://raider.io/api/v1/guilds/boss-kill?region=".concat(region, "&realm=").concat(realm, "&guild=").concat(guild, "&raid=").concat(progRaid, "&boss=").concat(boss, "&difficulty=").concat(difficulty);
+    var container = document.querySelector(".raidProg .boss[data-boss=".concat(boss, "]")),
+      infoBlock = container.querySelector('.killDate');
+    fetch(bossEndpoint).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      if (data.kill) {
+        var killDate = new Date(data.kill.defeatedAt).toLocaleDateString('en-us', {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        });
+        container.classList.add('defeated');
+        infoBlock.setAttribute('data-tooltip', "Killed on ".concat(killDate));
+        infoBlock.setAttribute('data-position', 'top');
+      }
+    });
+  });
+}
+// Construct current prog bosses block w/ kill data 
+/* 
+	moved away from this for a few reasons
+	- The forEach loop was outputting the content in a random order.
+	- attempted to use a promise to run a sort and output method after generating the content in the forEach loop,
+	  but this relied on a timeOut function that felt too arbitrary. Since this content is fairly static, I figured
+	  it made more sense to build it statically, and just update it with dynamic meta data
+*/
+//===========================================
+
+// let bossProgArray = [];
+// let createProgBosses = new Promise((resolve, reject) => {
+// 	let i = 0;
+// 	progBosses.forEach((boss,index) => {
+// 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
+// 		const imgUrl = `/img/${progRaid}/${boss}.png`;
+// 		const wrapper = document.querySelector('.raidProg');
+// 		const newDiv = document.createElement('div');
+// 		const newImg = document.createElement('img');
+// 		newImg.src = imgUrl;
+// 		newImg.width = 145;
+// 	console.log(bossEndpoint);
+// 		newDiv.classList.add('boss')
+// 		newDiv.id = "boss_0"+index;
+// 		newDiv.appendChild(newImg);
+
+// 		fetch(bossEndpoint)
+// 			.then((response) => response.json())
+// 			.then((data) => {
+// 				if (data.kill) {
+// 					newDiv.classList.add('defeated');
+// 				}
+// 				// write to array
+// 				bossProgArray.push({key: index,obj : newDiv});
+// 			});
+// 		i++;
+// 	});
+// 	if (i === progBosses.length) {
+// 		// resolve('done');
+// 		setTimeout(() => resolve("done"), 1000);
+// 	}
+// });
+// createProgBosses.then((result) => {
+// 	const wrapper = document.querySelector('.raidProg');
+// 	// sort array
+// 	bossProgArray.sort(function(a, b) {
+// 		var keyA = a.key,
+// 			keyB = b.key;
+// 		// Compare the 2 dates
+// 		if (keyA < keyB) return -1;
+// 		if (keyA > keyB) return 1;
+// 		return 0;
+// 	});
+// 	// output array to DOM
+// 	bossProgArray.forEach((boss) => {
+// 		wrapper.appendChild(boss.obj);
+// 	});
+// });
 
 // Endpoints
 // const guildProfile = `https://raider.io/api/v1/guilds/profile?region=${region}&realm=${realm}&name=${guild}&fields=raid_progression%2Craid_rankings`,
 // const bossRanking = `https://raider.io/api/v1/raiding/boss-rankings?raid=${raid}&boss=${boss}&difficulty=${difficulty}&region=${region}&realm=${realm}`;
 
+// Grabs meta data for CE kill blocks
+//===========================================
 raids.forEach(function (raid, index) {
   var boss = bosses[index];
   var bossRanking = "https://raider.io/api/v1/raiding/boss-rankings?raid=".concat(raid, "&boss=").concat(boss, "&difficulty=").concat(difficulty, "&region=").concat(region, "&realm=").concat(realm);
@@ -3776,7 +3882,7 @@ raids.forEach(function (raid, index) {
   }).then(function (data) {
     var _data = data.bossRankings;
     _data.forEach(function (entry) {
-      if (entry.guild.name == 'Commit') {
+      if (entry.guild.name === 'Commit') {
         var rankElm = document.querySelector("#".concat(boss, " .rank")),
           dateElm = document.querySelector("#".concat(boss, " .date")),
           killDate = new Date(entry.encountersDefeated[0].firstDefeated).toLocaleDateString('en-us', {

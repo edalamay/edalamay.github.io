@@ -1,4 +1,5 @@
 // VH Hack for mobile web browsers -- making 100vh the same everywhere
+//===========================================
 	/* 
 	To use, set a css property using the new var in a calc. Ex:
 	.class {
@@ -144,7 +145,7 @@
 			}
 		});
 	}
-	
+
 
 // nav scroll effect
 //===========================================
@@ -308,7 +309,7 @@
 	const url = '/js/bossKills.json';
 	function createKillBlocks(data) {
 		let output = data.map(function(kill) {
-			if (kill.date) {
+			if (kill.killed == true) {
 				return `
 					<a id="${kill.slug}" href="${kill.externalUrl}" target="_blank" rel="noopener" class="block">
 						<div class="bg">
@@ -328,14 +329,42 @@
 		// Create markup
 		container.innerHTML = output;
 	}
+	function createProgBlocks(data) {
+		let output = data.map(function(boss) {
+			return `
+				<div class="boss" data-boss="${boss.slug}">
+					<img src="/img/${boss.raid}/${boss.slug}.png" alt="${boss.name}" width="145">
+					<div class="info">
+						<div class="killDate"></div>
+						${(() => {
+							if (boss.video) {
+								return `
+									<a class="video" href="https://www.youtube.com/watch?v=${boss.video}" target="_blank" rel="noopener" data-tooltip="Watch Kill Video" data-position="top"><img src="/img/youtube.svg" alt="YouTube"></a>
+								`
+							} else {
+								return '';
+							}
+						})()}
+					</div>
+				</div>
+			`;
+		}).join('');
+
+		// Get the app element
+		let container = document.querySelector('.raidProg');
+		// Create markup
+		container.innerHTML = output;
+		updateProgData();
+	}
 	fetch(url)
 		.then((response) => response.json())
 		.then((data) => {
-			createKillBlocks(data);
+			createKillBlocks(data.ceKills);
+			createProgBlocks(data.progKills);
 		});
+	
 
-
-
+	
 
 
 
