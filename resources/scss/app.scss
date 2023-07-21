@@ -808,6 +808,38 @@ h2.special {
 		}
 		.iframe--wrap {
 			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			@keyframes progBar {
+				to { transform: scaleX(1); }
+			}
+			#refresh {
+				position: relative;
+				color: lighten($brand-grey, 15%);
+				font-size: 1.4rem;
+				margin-top: 1rem;
+				&::before,
+				&::after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: 100%;
+					left: 0;
+					width: 100%;
+					height: 2px;
+					background: var(--brand-blue);
+				}
+				&::before {
+					background: lighten($brand-grey, 10%);
+				}
+				&::after {
+					background: var(--brand-blue);
+					transform: scaleX(0);
+					transform-origin: left;
+					animation: progBar var(--refreshRate) linear infinite;
+				}
+			}
 		}
 		#loading {
 			position: absolute;
@@ -823,7 +855,7 @@ h2.special {
 			animation: spin 1s ease-in-out infinite;
 		}
 		@keyframes spin {
-			to { -webkit-transform: translate(-50%,-50%) rotate(360deg); }
+			to { transform: translate(-50%,-50%) rotate(360deg); }
 		}
 		iframe {
 			width: 100%;

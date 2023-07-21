@@ -371,3 +371,53 @@
 
 
 
+
+
+// Refresh Raider.io iframe
+//===========================================
+function updateProg() {
+	const timeMin = 5, // refresh time in minutes
+		  refreshRate = timeMin * 60 * 1000; // convert to ms
+	
+	function getDST() {
+		Date.prototype.stdTimezoneOffset = function () {
+			var jan = new Date(this.getFullYear(), 0, 1);
+			var jul = new Date(this.getFullYear(), 6, 1);
+			return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+		}
+		Date.prototype.isDstObserved = function () {
+			return this.getTimezoneOffset() < this.stdTimezoneOffset();
+		}
+		var today = new Date();
+		if (today.isDstObserved()) { 
+			timezone = 'CDT';
+			return timezone;
+		} else {
+			timezone = 'CST';
+			return timezone;
+		}
+	}
+	function refreshiframe() {
+		var iframe = document.getElementById("raiderIO");
+		iframe.src = iframe.src;
+	}
+	function updateRefreshTime() {
+		const elem = document.getElementById('refresh');
+		let formatter = new Intl.DateTimeFormat('en', {timeStyle: "short"}),
+			currentTime = formatter.format(new Date()),
+			timezone;
+
+		elem.innerHTML = `Updated at ${currentTime}`;
+	}
+	const interval = setInterval(function() {
+		refreshiframe();
+		updateRefreshTime();
+		console.log('iframe updated!');
+	}, refreshRate);
+	// Set current load time
+	updateRefreshTime();
+	// Set var for CSS animation on the load bar
+	$("body").get(0).style.setProperty("--refreshRate", refreshRate+'ms');
+	// clearInterval(interval);
+}
+updateProg();
