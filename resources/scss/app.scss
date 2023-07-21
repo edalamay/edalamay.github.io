@@ -79,6 +79,16 @@ body {
 		}
 	}
 }
+// fancybox mod
+.fancybox-slide {
+	@include media('<md') {
+		padding: 44px 22px;
+	}
+	@include media('<sm') {
+		padding: 44px 0;
+	}
+}
+
 [data-tooltip] {
 	&::before,
 	&::after {
