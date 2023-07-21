@@ -2,5 +2,6 @@
     "/docs/css/app.css": "/docs/css/app.css",
     "/docs/js/app.js": "/docs/js/app.js",
     "/docs/css/bootstrap.min.css": "/docs/css/bootstrap.min.css",
+    "/docs/css/jquery.fancybox.min.css": "/docs/css/jquery.fancybox.min.css",
     "/docs/js/bossKills.json": "/docs/js/bossKills.json"
 }

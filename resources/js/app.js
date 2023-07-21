@@ -341,7 +341,7 @@
 						${(() => {
 							if (boss.video) {
 								return `
-									<a class="video" href="https://www.youtube.com/watch?v=${boss.video}" target="_blank" rel="noopener" data-tooltip="Watch Kill Video" data-position="top"><img src="/img/youtube.svg" alt="YouTube"></a>
+									<a class="video" data-fancybox href="https://www.youtube.com/watch?v=${boss.video}" data-tooltip="Watch Kill Video" data-position="top"><img src="/img/youtube.svg" alt="YouTube"></a>
 								`
 							} else {
 								return '';
