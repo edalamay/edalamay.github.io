@@ -11,6 +11,8 @@
 			"boss": "Raszageth",
 			"slug": "raszageth-the-stormeater",
 			"killed": true,
+			"date": "April 6, 2023",
+			"rank": "US 353",
 			"img": "/img/bosses/raszageth.jpg",
 			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/vault-of-the-incarnates/raszageth-the-stormeater"
 		},
@@ -18,6 +20,8 @@
 			"boss": "The Jailer",
 			"slug": "the-jailer",
 			"killed": true,
+			"date": "July 22, 2022",
+			"rank": "US 374",
 			"img": "/img/bosses/jailer.jpg",
 			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sepulcher-of-the-first-ones/the-jailer"
 		},
@@ -25,6 +29,8 @@
 			"boss": "Sylvanas",
 			"slug": "sylvanas-windrunner",
 			"killed": true,
+			"date": "January 26, 2022",
+			"rank": "US 545",
 			"img": "/img/bosses/sylvanas.jpg",
 			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/sanctum-of-domination/sylvanas-windrunner"
 		},
@@ -32,6 +38,8 @@
 			"boss": "Sire Denathrius",
 			"slug": "sire-denathrius",
 			"killed": true,
+			"date": "June 23, 2021",
+			"rank": "US 684",
 			"img": "/img/bosses/sire-denathrius.jpeg",
 			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/castle-nathria/sire-denathrius"
 		},
