@@ -198,7 +198,7 @@ var buildChart = fetchMetaData().then(function(result) {
 	}
 	// create a new array for our x-axis label, just counts from 1 to the length of the parent array
 	const arrayLength = Array.from({length: percentArray.length}, (_, i) => i + 1);
-	console.log(arrayLength.length);
+	console.log(`Total Pull Count: ${arrayLength.length}`);
 
 	// Create line chart w/ api data
 	const ctx = document.getElementById('wcl_chart');
