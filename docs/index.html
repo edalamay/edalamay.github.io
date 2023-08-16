@@ -105,10 +105,20 @@
 			<div class="container">
 				<h2 class="special">Current Prog</h2>
 				<div class="raidProg"></div>
-				<div class="iframe--wrap">
+				<!-- <div class="iframe--wrap">
 					<div id="loading"></div>
 					<iframe id="raiderIO" width="1512" height="500" src="https://raider.io/widgets/health-over-attempt?raid=latest&type=attempt&period=until_kill&difficulty=mythic&guilds=us%2Fstormrage%2FCommit&boss=latest" frameborder="0"></iframe>
 					<div id="refresh"></div>
+				</div> -->
+				<!-- <div id="frost-chart" style="background:white;"></div> -->
+				<div class="wcl">
+					<div class="wcl--heading">
+						<h2 class="wcl--heading_primary"></h2>
+						<h3 class="wcl--heading_secondary"></h3>
+					</div>
+					<div class="wcl--canvas_wrap">
+						<canvas id="wcl_chart"></canvas>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -161,6 +171,9 @@
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
-	<script id="mainjs" src="/js/app.js?v=1.2.14"></script>
+	<!-- <script src="https://unpkg.com/frappe-charts@latest"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.3/chart.umd.js" integrity="sha512-wv0y1q2yUeK6D55tLrploHgbqz7ZuGB89rWPqmy6qOR9TmmzYO69YZYbGIYDmqmKG0GwOHQXlKwPyOnJ95intA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script id="mainjs" src="/js/app.js"></script>
+	<script src="/js/warcraftlogs-api.js"></script>
 </body>
 </html>

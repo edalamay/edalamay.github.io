@@ -69,7 +69,6 @@ function updateProgData() {
 					infoBlock.innerHTML = `${bossName} <br>Killed on ${killDate}`;
 				}
 			});
-
 	});	
 }
 // Construct current prog bosses block w/ kill data 
@@ -139,24 +138,24 @@ function updateProgData() {
 
 // Grabs meta data for CE kill blocks
 //===========================================
-// raids.forEach((raid, index) => {
-// 	const boss = bosses[index];
-// 	const bossRanking = `https://raider.io/api/v1/raiding/boss-rankings?raid=${raid}&boss=${boss}&difficulty=${difficulty}&region=${region}&realm=${realm}`;
-// 	fetch(bossRanking)
-// 	.then((response) => response.json())
-// 	.then((data) => {
-// 		let _data = data.bossRankings;
-// 		_data.forEach((entry) => {
-// 			if (entry.guild.name === 'Commit') {
-// 				let rankElm = document.querySelector(`#${boss} .rank`),
-// 					dateElm = document.querySelector(`#${boss} .date`),
-// 					killDate = new Date(entry.encountersDefeated[0].firstDefeated).toLocaleDateString('en-us', {month:"long",day:"numeric",year:"numeric"});
-// 				rankElm.innerHTML = 'US '+entry.regionRank;
-// 				dateElm.innerHTML = killDate;
-// 			}
-// 		});
-// 	});
-// });
+	// raids.forEach((raid, index) => {
+	// 	const boss = bosses[index];
+	// 	const bossRanking = `https://raider.io/api/v1/raiding/boss-rankings?raid=${raid}&boss=${boss}&difficulty=${difficulty}&region=${region}&realm=${realm}`;
+	// 	fetch(bossRanking)
+	// 	.then((response) => response.json())
+	// 	.then((data) => {
+	// 		let _data = data.bossRankings;
+	// 		_data.forEach((entry) => {
+	// 			if (entry.guild.name === 'Commit') {
+	// 				let rankElm = document.querySelector(`#${boss} .rank`),
+	// 					dateElm = document.querySelector(`#${boss} .date`),
+	// 					killDate = new Date(entry.encountersDefeated[0].firstDefeated).toLocaleDateString('en-us', {month:"long",day:"numeric",year:"numeric"});
+	// 				rankElm.innerHTML = 'US '+entry.regionRank;
+	// 				dateElm.innerHTML = killDate;
+	// 			}
+	// 		});
+	// 	});
+	// });
 
 
 
