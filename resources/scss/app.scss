@@ -935,6 +935,12 @@ h2.special {
 				width: 100%;
 				// height: 30vw;
 				aspect-ratio: 3/1;
+				@include media('<xl') {
+					aspect-ratio: 2/1;
+				}
+				@include media('<md') {
+					aspect-ratio: 1.5/1;
+				}
 			}
 		}
 	}

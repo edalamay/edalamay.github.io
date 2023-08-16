@@ -236,7 +236,7 @@ var buildChart = fetchMetaData().then(function(result) {
 		},
 		options: {
 			responsive: true,
-			aspectRatio: 1 | 3,
+			// aspectRatio: 1 | 3,
 			maintainAspectRatio: false,
 			interaction: { // allows mouseover anywhere to trigger the closest tooltip
 				intersect: false,
