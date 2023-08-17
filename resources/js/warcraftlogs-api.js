@@ -180,12 +180,24 @@ var buildChart = fetchMetaData().then(function(result) {
 		mapLowestHP = [...percentArray], // clone the percentArray
 		pointSizes= [], // set up an array to use later
 		pointRotation = []; // set up an array to use later
+	
+	// Get rid of any 100% HP values, it mucks everything up ¯\_(ツ)_/¯
+	for (let x = 0; x <= percentArray.length; x++) {
+		if (percentArray[x] == 100) {
+			percentArray[x] = '99.9';
+		}
+	}
 
 	// This loop is to create the chart to track best pulls
 	for (let x = 0; x <= mapLowestHP.length; x++) {
+		// A value of 100 fucks up the logic for the 'day' bars, so lets just make them all 99.9 lul
+		if (mapLowestHP[x] == 100) {
+			mapLowestHP[x] = mapLowestHP[x-1];
+		}
 		// If current % is smaller than next value, set the next value to match, essentially making a flat line
-		if (mapLowestHP[x] < mapLowestHP[x+1]) {
-			mapLowestHP[x+1] = mapLowestHP[x];
+		// this logic appears to break when `mapLowestHP[x+1]' is equal to 100... absolutely bizarre 
+		if (mapLowestHP[x] < mapLowestHP[x+1]) { 
+			mapLowestHP[x+1] = mapLowestHP[x]; 
 		}
 		// If current % is smaller than previous, make a large point 
 		if (mapLowestHP[x] < mapLowestHP[x-1]) {
@@ -198,7 +210,11 @@ var buildChart = fetchMetaData().then(function(result) {
 	}
 	// create a new array for our x-axis label, just counts from 1 to the length of the parent array
 	const arrayLength = Array.from({length: percentArray.length}, (_, i) => i + 1);
-	console.log(`Total Pull Count: ${arrayLength.length}`);
+	console.log(`Total Pull Count: ${arrayLength.length}\n`);
+	console.log('All Pull Data: \n');
+	console.log(percentArray);
+	console.log('Only Best %: \n');
+	console.log(mapLowestHP);
 
 	// Create line chart w/ api data
 	const ctx = document.getElementById('wcl_chart');
@@ -226,7 +242,7 @@ var buildChart = fetchMetaData().then(function(result) {
 					pointHoverRadius: 7,
 					pointHoverBorderColor: 'white',
 					label: 'Best Pull'
-				}, { // third chart is a bar, tracking raid days. Displays a line on the last pull of a raid night, breaking progression into columns per raid day
+				},{ // third chart is a bar, tracking raid days. Displays a line on the last pull of a raid night, breaking progression into columns per raid day
 					type: 'bar',
 					data: raidDayArray,
 					barThickness: 0.25,
