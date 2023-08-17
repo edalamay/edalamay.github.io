@@ -1,5 +1,5 @@
-<h1>Warcraft Logs API</h1>
-<p>Fetching report data...</p>
+Warcraft Logs API 
+Fetching report data...
 <?php
 
 $curl = curl_init();
@@ -37,15 +37,14 @@ if (!file_exists($file)) {
 $data = file_get_contents($file);
 $data = $response;
 file_put_contents($file,$data);
-echo "<p>Initial data retrieved</p>";
+echo "Initial data retrieved\n";
 
 // Check for additional pages
 $json = json_decode($data,true);
 $pageCount = $json['data']['reportData']['reports']['last_page'];
 
 if ($pageCount > 1) {
-	echo "<p>Fetching additional pages...</p>";
-	echo '<ul>';
+	echo "Fetching additional pages...\n";
 	for ($x = 2; $x <= $pageCount; $x++) {
 		// fetch more data
 		$curl = curl_init();
@@ -70,7 +69,7 @@ if ($pageCount > 1) {
 		curl_close($curl);
 
 		if ($err) {
-			echo "cURL Error #:" . $err;
+			echo "cURL Error #:" . $err . "\n";
 		}
 		// write data to file
 		/* write multiple files */
@@ -91,7 +90,7 @@ if ($pageCount > 1) {
 			// 	)
 			// );
 			// file_put_contents($file,$updatedObject);
-		echo '<li>Page '.$x.' added</li>';
-	} 
-	echo '</ul>';
+		echo " - Page ".$x." added\n";
+	}
+	echo "\n Done!\n";
 }
