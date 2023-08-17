@@ -15,7 +15,7 @@ jobs:
   cron:
     defaults:
       run:
-        working-directory: ./docs
+        working-directory: docs
     runs-on: ubuntu-latest
     steps:
       # Runs a single command using the runners shell
