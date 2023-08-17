@@ -11,10 +11,13 @@ on:
 
      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  defaults:
+    run:
+      working-directory: ./docs
   # This workflow contains a single job called "cron"
   cron:
-    runs-on: macos-12
+    runs-on: ubuntu-latest
     steps:
       # Runs a single command using the runners shell
       - name: Run our PHP file
-        run: PHP ../../docs/getReportData.php
+        run: PHP getReportData.php
