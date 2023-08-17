@@ -4,19 +4,17 @@ name: WarcraftLogs API
 
        # Controls when the workflow will run
 on:
-  # Triggers the workflow every hour on the hour
+  workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
+    # Triggers the workflow every hour on the hour
 
      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "cron"
   cron:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: macos-12
     steps:
       # Runs a single command using the runners shell
       - name: Run our PHP file
-        run: PHP docs/getReportData.php
+        run: PHP ../../docs/getReportData.php
