@@ -1,7 +1,5 @@
-Warcraft Logs API 
-Fetching report data...
 <?php
-
+echo "Warcraft Logs API \nFetching report data...";
 $curl = curl_init();
 
 curl_setopt_array($curl, [
@@ -92,5 +90,17 @@ if ($pageCount > 1) {
 			// file_put_contents($file,$updatedObject);
 		echo " - Page ".$x." added\n";
 	}
-	echo "\n Done!\n";
+	echo "\nDone!\n";
 }
+
+// create a txt file to store date of last fetch
+// =========================================================
+// create file
+$txtFile = __DIR__.'/js/fetchDate.txt';
+$generateTxtFile = fopen($txtFile,'w');
+// get current time
+$time = new DateTime("now", new DateTimeZone('America/Chicago'));
+$timeFormatted = $time->format('H:i A');
+// output time to file
+file_put_contents($txtFile, $timeFormatted);
+echo "Fetch timestamp logged\n";
