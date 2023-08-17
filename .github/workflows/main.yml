@@ -13,11 +13,9 @@ on:
 jobs:
   # This workflow contains a single job called "cron"
   cron:
-    defaults:
-      run:
-        working-directory: docs
     runs-on: ubuntu-latest
     steps:
       # Runs a single command using the runners shell
       - name: Run our PHP file
         run: PHP getReportData.php
+        working-directory: ./docs
