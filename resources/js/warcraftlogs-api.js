@@ -144,6 +144,7 @@ async function fetchMetaData() {
 		const response = await fetch(`/js/reportData_${currentPage}.json`)
 		let data = await response.json();
 		let innerFightData = data.data.reportData.reports.data;
+		// console.log(data);
 
 		morePagesAvailable = data.data.reportData.reports.has_more_pages;
 		innerFightData.map((fight, i) => {
@@ -210,11 +211,6 @@ var buildChart = fetchMetaData().then(function(result) {
 	}
 	// create a new array for our x-axis label, just counts from 1 to the length of the parent array
 	const arrayLength = Array.from({length: percentArray.length}, (_, i) => i + 1);
-	console.log(`Total Pull Count: ${arrayLength.length}\n`);
-	console.log('All Pull Data: \n');
-	console.log(percentArray);
-	console.log('Only Best %: \n');
-	console.log(mapLowestHP);
 
 	// Create line chart w/ api data
 	const ctx = document.getElementById('wcl_chart');
@@ -315,3 +311,17 @@ var buildChart = fetchMetaData().then(function(result) {
 		}
 	});
 })
+
+// append last update time
+function updateRefreshTime() {
+	const elem = document.getElementById('refresh');
+	const dateFile = '/js/fetchDate.txt' // provide file location
+
+	fetch(dateFile)
+		.then((response) => response.text())
+		.then((data) => {
+			elem.innerHTML = `Updated at ${data}`;
+		});
+
+}
+updateRefreshTime();
