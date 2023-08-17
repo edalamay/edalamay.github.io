@@ -180,7 +180,8 @@ var buildChart = fetchMetaData().then(function(result) {
 		raidDayArray = result[1],
 		mapLowestHP = [...percentArray], // clone the percentArray
 		pointSizes= [], // set up an array to use later
-		pointRotation = []; // set up an array to use later
+		pointRotation = [],
+		newBestText = []; // set up an array to use later
 	
 	// Get rid of any 100% HP values, it mucks everything up ¯\_(ツ)_/¯
 	for (let x = 0; x <= percentArray.length; x++) {
@@ -204,14 +205,15 @@ var buildChart = fetchMetaData().then(function(result) {
 		if (mapLowestHP[x] < mapLowestHP[x-1]) {
 			pointSizes.push(3.5);
 			pointRotation.push(45);
+			newBestText.push('New Best!');
 		} else { // if not, make small point
 			pointSizes.push(0.1);
 			pointRotation.push(0);
+			newBestText.push('');
 		}
 	}
 	// create a new array for our x-axis label, just counts from 1 to the length of the parent array
 	const arrayLength = Array.from({length: percentArray.length}, (_, i) => i + 1);
-
 	// Create line chart w/ api data
 	const ctx = document.getElementById('wcl_chart');
 	new Chart(ctx, {
@@ -289,13 +291,21 @@ var buildChart = fetchMetaData().then(function(result) {
 			},
 			plugins: {
 				tooltip: { // modify the tooltips
+					borderWidth: 2,
 					callbacks: {
 						title: (context) => {
 							return `Pull #${context[0].label}`;
 						},
+						afterTitle: (context) => {
+							let i = context[0].label - 1;
+							if (newBestText[i].length > 0) {
+								return `${newBestText[i]}`;
+							}
+						},
 						label: (context) => { // set tooltip value for only our first two charts
 							let i = context.dataIndex,
 								value = context.dataset.data[i];
+							// filter out the data from our bar chart that denotes days
 							if (value < 100 && value > 0) {
 								return `${context.dataset.label}: ${value}%`
 							} else {
@@ -316,12 +326,10 @@ var buildChart = fetchMetaData().then(function(result) {
 function updateRefreshTime() {
 	const elem = document.getElementById('refresh');
 	const dateFile = '/js/fetchDate.txt' // provide file location
-
 	fetch(dateFile)
 		.then((response) => response.text())
 		.then((data) => {
 			elem.innerHTML = `Updated at ${data}`;
 		});
-
 }
 updateRefreshTime();
