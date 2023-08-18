@@ -18,12 +18,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run our PHP file
         run: |
-          pwd
+          cd docs
           ls
-          cd ..
-          pwd
-          ls
-          cd ..
-          pwd
-          ls
+          cd ..docs
           
