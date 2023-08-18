@@ -20,5 +20,8 @@ jobs:
         run: |
           echo "run pwd"
           pwd 
-          echo "run ls -al"
-          ls -al
+          echo "step back a directory"
+          cd ..
+          pwd
+          ls
+          
