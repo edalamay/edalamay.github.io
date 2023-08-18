@@ -100,7 +100,7 @@ $txtFile = __DIR__.'/js/fetchDate.txt';
 $generateTxtFile = fopen($txtFile,'w');
 // get current time
 $time = new DateTime("now", new DateTimeZone('America/Chicago'));
-$timeFormatted = $time->format('H:i A');
+$timeFormatted = $time->format('g:i A');
 // output time to file
 file_put_contents($txtFile, $timeFormatted);
 echo "Fetch timestamp logged\n";
