@@ -18,20 +18,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run our PHP file
         run: |
-          echo "directory path:"
-          pwd 
-          echo "contents:
-          ls
-          echo "step back a directory"
-          cd ..
-          echo "directory path:"
           pwd
-          echo "contents:
           ls
-          echo "step back a directory"
           cd ..
-          echo "directory path:"
           pwd
-          echo "contents:
+          ls
+          cd ..
+          pwd
           ls
           
