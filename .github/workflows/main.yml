@@ -17,5 +17,8 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run our PHP file
-        run: PHP getReportData.php
-        working-directory: docs
+        run: |
+          echo "run pwd"
+          pwd 
+          echo "run ls -al"
+          ls -al
