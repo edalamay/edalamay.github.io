@@ -910,7 +910,7 @@ h2.special {
 			color: white;
 			padding: 2rem 1rem 1rem;
 			border: 2px solid black;
-			background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(52,47,45,1) 100%);
+			background: linear-gradient(0deg, #000, #272a2f);
 			h2 {
 				font-size: 3.5rem;
 				@include media('<lg') {

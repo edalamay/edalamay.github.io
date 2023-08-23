@@ -101,7 +101,7 @@ function unixRounding(value) {
 	return value;
 }
 function timeCompare(time1,time2) {
-	let unixHours = 12 * 60 * 60; // 12 hours in seconds
+	let unixHours = 1 * 60 * 60; // 1 hour in seconds
 	if ( (time1 - time2) < unixHours ) {
 		return true; // reports are duplicates
 	} else {
