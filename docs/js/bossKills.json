@@ -3,7 +3,9 @@
 		{
 			"boss": "Sarkareth",
 			"slug": "scalecommander-sarkareth",
-			"killed": false,
+			"killed": true,
+			"date": "August 24, 2023",
+			"rank": "US 300",
 			"img": "/img/bosses/sarkareth.jpg",
 			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/aberrus-the-shadowed-crucible/scalecommander-sarkareth"
 		},
