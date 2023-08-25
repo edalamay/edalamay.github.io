@@ -101,7 +101,7 @@ function unixRounding(value) {
 	return value;
 }
 function timeCompare(time1,time2) {
-	let unixHours = 0.5 * 60 * 60; // 1 hour in seconds
+	let unixHours = 0.5 * 60 * 60; // 0.5 hour in seconds
 	if ( (time1 - time2) < unixHours ) {
 		return true; // reports are duplicates
 	} else {
@@ -123,7 +123,12 @@ async function fetchMetaData() {
 		pulls.map((pull, i) => {
 			if (pull.name == activeBoss) {
 				let bossHp = pull.bossPercentage,
-					bossHpRounded = bossHp.toFixed(1); // get boss hp, round to single decimal
+					bossHpRounded;
+				if (pull.kill == true) { // check if this is a kill, because % might not be accurate
+					bossHpRounded = "0";
+				} else {
+					bossHpRounded = bossHp.toFixed(2); // get boss hp, round to single decimal
+				}
 				innerArray.push(bossHpRounded); // add boss % to single report array
 				if (i+1 === pulls.length) {
 					// If this is the last pull of a report, set value to 100 to denote the end of the raid day
@@ -182,7 +187,7 @@ var buildChart = fetchMetaData().then(function(result) {
 		pointSizes= [], // set up an array to use later
 		pointRotation = [],
 		newBestText = []; // set up an array to use later
-	
+
 	// Get rid of any 100% HP values, it mucks everything up ¯\_(ツ)_/¯
 	for (let x = 0; x <= percentArray.length; x++) {
 		if (percentArray[x] == 100) {
@@ -192,7 +197,7 @@ var buildChart = fetchMetaData().then(function(result) {
 
 	// This loop is to create the chart to track best pulls
 	for (let x = 0; x <= mapLowestHP.length; x++) {
-		// A value of 100 fucks up the logic for the 'day' bars, so lets just make them all 99.9 lul
+		// A value of 100 fucks up the logic for the 'day' bars, so just throw them out
 		if (mapLowestHP[x] == 100) {
 			mapLowestHP[x] = mapLowestHP[x-1];
 		}
@@ -205,7 +210,11 @@ var buildChart = fetchMetaData().then(function(result) {
 		if (mapLowestHP[x] < mapLowestHP[x-1]) {
 			pointSizes.push(3.5);
 			pointRotation.push(45);
-			newBestText.push('New Best!');
+			if (mapLowestHP[x] == "0") {
+				newBestText.push('Boss killed!');
+			} else {
+				newBestText.push('New Best!');
+			}
 		} else { // if not, make small point
 			pointSizes.push(0.1);
 			pointRotation.push(0);
