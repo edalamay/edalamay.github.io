@@ -72,7 +72,9 @@
 	
 // header video
 //===========================================
-	const vidID = '2yiePgk0uWU',
+	// 10.1 video = 2yiePgk0uWU 
+	// 10.2 video = Ti0Jucb3FZA
+	const vidID = 'Ti0Jucb3FZA',
 		  ytParent = document.querySelector('.section--banner .background'),
 		  ytThumb = document.querySelector('.section--banner .thumbnail');
 
@@ -144,7 +146,6 @@
 			}
 		});
 	}
-
 
 // nav scroll effect
 //===========================================
@@ -310,7 +311,7 @@
 		let output = data.map(function(kill) {
 			if (kill.killed == true) {
 				return `
-					<a id="${kill.slug}" href="${kill.externalUrl}" target="_blank" rel="noopener" class="block">
+					<div id="${kill.slug}" class="block">
 						<div class="bg">
 							<img src="${kill.img}" alt="${kill.boss}">
 							<div class="overlay"></div>
@@ -318,7 +319,19 @@
 						<h3>${kill.boss}</h3>
 						<time class="date">${kill.date}</time>
 						<div class="rank">${kill.rank}</div>
-					</a>
+						<div class="links">
+							<a href="${kill.externalUrl}" target="_blank" rel="noopener"><img src="/img/logo--raiderio.svg" alt="Raider.io"> Raid Breakdown</a>
+							${(() => {
+								if (kill.vidID) {
+									return `
+										<a class="video" data-fancybox href="https://www.youtube.com/watch?v=${kill.vidID}" ><img src="/img/logo--youtube.svg" alt="YouTube"> Kill Video</a>
+									`
+								} else {
+									return '';
+								}
+							})()}
+						</div>
+					</div>
 				`;
 			}
 		}).join('');
@@ -364,7 +377,6 @@
 			createProgBlocks(data.progKills);
 		});
 	
-
 // Refresh Raider.io iframe
 //===========================================
 	function updateProg() {

@@ -698,8 +698,8 @@ h2.special {
 			flex-direction: row;
 			justify-content: center;
 			z-index: 1;
+			flex-wrap: wrap;
 			@include media('<xl') {
-				flex-wrap: wrap;
 			}
 			@include media('<md') {
 				gap: 1rem 0;
@@ -903,6 +903,7 @@ h2.special {
 			// aspect-ratio: 3.1 / 1;
 		}
 		.wcl {
+			position: relative;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -943,6 +944,23 @@ h2.special {
 					aspect-ratio: 1.5/1;
 				}
 			}
+			#wcl_chart {
+				position: relative;
+				&::before {
+					content: '';
+					position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			border: 3px solid rgba(255,255,255,.3);
+			border-radius: 50%;
+			border-top-color: #fff;
+			animation: spin 1s ease-in-out infinite;
+				}
+			}
 		}
 	}
 	&--ce {
@@ -979,18 +997,27 @@ h2.special {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				justify-content: center;
+				justify-content: flex-start;
 				aspect-ratio: 1/.9;
+				padding: 33.33333% 0 0rem;
 				clip-path: polygon(var(--skewTL) 0,100% 0,var(--skewBR) 100%, 0 100%);
 				text-decoration: none;
+				@include media('<xxl') {
+					padding: 25% 0 0rem;
+				}
 				&:hover {
 					.bg {
 						.overlay {
-							opacity: 0;
+							// opacity: 0;
 						}
 						img {
 							transform: scale3d(1.1,1.1,1);
 						}
+					}
+					.links {
+						transform: translateY(0);
+						opacity: 1;
+						transition: 200ms var(--decelerate-ease);
 					}
 				}
 				&.wip {
@@ -1037,11 +1064,17 @@ h2.special {
 				h3 {
 					font-size: 3.2rem;
 					margin: 0;
+					@include media('<xxl') {
+						font-size: 3rem;
+					}
 					@include media('<md') {
-						font-size: 2.9rem;
+						font-size: 2.5rem;
 					}
 					@include media('<sm','>=xsm') {
 						font-size: 2.5rem;
+					}
+					@include media('<xsm') {
+						font-size: 2.8rem;
 					}
 					&::after {
 						content: '';
@@ -1050,16 +1083,25 @@ h2.special {
 						transform: translateX(10%);
 						margin: 1rem 0 1.5rem;
 						border-bottom: 4px solid var(--brand-blue);
+						@include media('<md','>=xsm') {
+							margin: 0.5rem 0 1rem;
+						}
 					}
 				}
 				time {
 					font-size: 2.4rem;
 					font-weight: var(--text-semi-bold);
+					@include media('<xxl') {
+						font-size: 2.2rem;
+					}
 					@include media('<md') {
-						font-size: 2.1rem;
+						font-size: 1.9rem;
 					}
 					@include media('<sm','>=xsm') {
 						font-size: 1.9rem;
+					}
+					@include media('<xsm') {
+						font-size: 2rem;
 					}
 				}
 				.rank {
@@ -1068,6 +1110,12 @@ h2.special {
 					font: {
 						size: 1.6rem;
 						weight: var(--text-bold);
+					}
+					@include media('<xxl') {
+						font-size: 1.4rem;
+					}
+					@include media('<xsm') {
+						font-size: 1.6rem;
 					}
 					&::before,
 					&::after {
@@ -1078,6 +1126,46 @@ h2.special {
 						background: white;
 						margin: 0 0.6rem;
 					}
+				}
+				.links {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					margin-top: 1rem;
+					transform: translateY(200%);
+					opacity: 0;
+					transition: 200ms var(--standard-ease);
+					@include media('<xl') {
+						margin-top: 0.5rem;
+					}
+					a {
+						position: relative;
+						display: flex;
+						background: rgba(0 0 0 / 0.75);
+						color: #f2f2f2;
+						text-decoration: none;
+						padding: 0.5rem 1rem;
+						margin-bottom: 0.5rem;
+						align-items: center;
+						/*! border: 1px solid #f2f2f2; */
+						font-size: 1.6rem;
+						border-radius: 4px;
+						background: var(--brand-darkestGrey);
+						border: 1px solid var(--brand-darkGrey);
+						@include media('<xxl') {
+							font-size: 1.4rem;
+						}
+						@include media('<xl') {
+							padding: 0.4rem 1rem;
+						}
+						&:hover {
+							background: lighten($brand-darkestGrey,15%);
+						}
+					}
+						img {
+							width: 18px;
+							margin-right: 0.5rem;
+						}
 				}
 			}
 		}
