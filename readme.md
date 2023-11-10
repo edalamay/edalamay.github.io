@@ -1,7 +1,7 @@
 # Commit - A Wow Raiding Guild Website
 
 Wanted to play with some new JS ideas and concepts, and figured making a website for a WoW raiding guild I'm a part of was a fun place to start.
-Created some simple branding, and then set up this site. Site includes API's from Twitch & Raider.io.
+Created some simple branding, and then set up this site. Site includes API's from Twitch, Raider.io, and Warcraft Logs.
 
 ## Installation
 
