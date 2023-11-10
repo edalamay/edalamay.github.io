@@ -6,6 +6,7 @@ const region = 'us',
 	  difficulty = 'mythic';
 
 const raids = [
+	'amirdrassil-the-dreams-hope',
 	'aberrus-the-shadowed-crucible',
 	'vault-of-the-incarnates',
 	'sepulcher-of-the-first-ones',
@@ -14,6 +15,7 @@ const raids = [
 	'nyalotha-the-waking-city'
 ];
 const bosses = [
+	'fyrakk-the-blazing',
 	'scalecommander-sarkareth',
 	'raszageth-the-stormeater',
 	'the-jailer',
@@ -22,17 +24,17 @@ const bosses = [
 	'nzoth-the-corruptor'
 ];
 
-const progRaid = 'aberrus-the-shadowed-crucible';
+const progRaid = 'amirdrassil-the-dreams-hope';
 const progBosses = [
-	'kazzara-the-hellforged',
-	'the-amalgamation-chamber',
-	'the-forgotten-experiments',
-	'assault-of-the-zaqali',
-	'rashok-the-elder',
-	'the-vigilant-steward-zskarn',
-	'magmorax',
-	'echo-of-neltharion',
-	'scalecommander-sarkareth'
+	'gnarlroot',
+	'igira-the-cruel',
+	'volcoross',
+	'council-of-dreams',
+	'larodar-keeper-of-the-flame',
+	'nymue-weaver-of-the-cycle',
+	'smolderon',
+	'tindral-sageswift-seer-of-the-flame',
+	'fyrakk-the-blazing'
 ];
 
 function makeTitle(slug) {
@@ -52,7 +54,7 @@ function updateProgData() {
 	progBosses.forEach((boss,index) => {
 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
 
-		const container = document.querySelector(`.raidProg .boss[data-boss=${boss}]`),
+		const container = document.querySelector(`.raidProg .boss[data-boss="${boss}"]`),
 			  infoWrap = container.querySelector('.killDate'),
 			  infoBlock = container.querySelector('.killDate--tooltip');
 

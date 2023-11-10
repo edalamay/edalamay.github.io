@@ -91,8 +91,8 @@ function WCL_API() {
 //--------
 
 // Data for chart title & subtitle - manually update this during prog?
-const activeBoss = 'Scalecommander Sarkareth',
-	  activeRaid = 'Aberrus, the Shadowed Crucible';
+const activeBoss = 'Gnarlroot',
+	  activeRaid = "Amirdrassil, the Dream's Hope";
 
 function unixRounding(value) {
 	value = value.toString(); // convert to string

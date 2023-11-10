@@ -72,6 +72,62 @@
 	],
 	"progKills": [
 		{
+			"name": "Gnarlroot",
+			"slug": "gnarlroot",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Igira the Cruel",
+			"slug": "igira-the-cruel",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Volcoross",
+			"slug": "volcoross",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Council of Dreams",
+			"slug": "council-of-dreams",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Larodar, Keeper of the Flame",
+			"slug": "larodar-keeper-of-the-flame",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Nymue, Weaver of the Cycle",
+			"slug": "nymue-weaver-of-the-cycle",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Smolderon",
+			"slug": "smolderon",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Tindral Sageswift, Seer of the Flame",
+			"slug": "tindral-sageswift-seer-of-the-flame",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		},
+		{
+			"name": "Fyrakk the Blazing",
+			"slug": "fyrakk-the-blazing",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": ""
+		}
+	],
+	"progKills_10.1": [
+		{
 			"name": "Kazzara the Hellforged",
 			"slug": "kazzara-the-hellforged",
 			"raid": "aberrus-the-shadowed-crucible"

@@ -304,7 +304,7 @@
 
 	getStreams();
 
-// CE Kills Component
+// Prog/CE Kills Component
 //===========================================
 	const url = '/js/bossKills.json';
 	function createKillBlocks(data) {
