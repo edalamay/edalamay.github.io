@@ -43,6 +43,11 @@ function makeTitle(slug) {
 	for (var i = 0; i < words.length; i++) {
 		var word = words[i];
 		words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+		// don't capitalize filler words
+		if (words[i] == 'The' || words[i] == 'Of') {
+			words[i] = words[i].toLowerCase();
+		}
+		// add commas to long boss titles
 		if (words[i].includes('Sageswift') || words[i].includes('Larodar') || words[i].includes('Nymue')) {
 			words[i] = words[i] + ',';
 		}
