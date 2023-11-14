@@ -43,6 +43,9 @@ function makeTitle(slug) {
 	for (var i = 0; i < words.length; i++) {
 		var word = words[i];
 		words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+		if (words[i].includes('Sageswift') || words[i].includes('Larodar') || words[i].includes('Nymue')) {
+			words[i] = words[i] + ',';
+		}
 	}
 
 	return words.join(' ');
@@ -59,6 +62,11 @@ function updateProgData() {
 			  infoBlock = container.querySelector('.killDate--tooltip');
 
 		let bossName = makeTitle(boss);
+
+		// output boss names before checking the endpoint for data
+		infoBlock.innerHTML = bossName+' <br><span>undefeated</span>';
+		// 
+
 		fetch(bossEndpoint)
 			.then((response) => response.json())
 			.then((data) => {

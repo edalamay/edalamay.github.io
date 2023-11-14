@@ -347,7 +347,7 @@
 				<div class="boss" data-boss="${boss.slug}">
 					<img src="/img/${boss.raid}/${boss.slug}.png" alt="${boss.name}" width="145">
 					<div class="info">
-						<div class="killDate hidden">
+						<div class="killDate">
 							<div class="killDate--tooltip"></div>
 						</div>
 						${(() => {
