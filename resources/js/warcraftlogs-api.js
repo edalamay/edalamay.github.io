@@ -91,8 +91,22 @@ function WCL_API() {
 //--------
 
 // Data for chart title & subtitle - manually update this during prog?
-const activeBoss = 'Gnarlroot',
-	  activeRaid = "Amirdrassil, the Dream's Hope";
+
+const progBosses = [
+	'Gnarlroot',
+	'Igira the Cruel',
+	'Volcoross',
+	'Council of Dreams',
+	'Larodar, Keeper of the Flame',
+	'Nymue, Weaver of the Cycle',
+	'Smolderon',
+	'Tindral Sageswift, Seer of the Flame',
+	'Fyrakk the Blazing'
+];
+
+const activeBoss = progBosses[1],
+	  activeRaid = "Amirdrassil, the Dream's Hope",
+	  raidLaunchUnix = 1699941600;
 
 function unixRounding(value) {
 	value = value.toString(); // convert to string
@@ -164,7 +178,10 @@ async function fetchMetaData() {
 						addDataToArray(fight)
 					}
 			} else {
-				addDataToArray(fight)
+				let currentReport = innerFightData[i].startTime;
+				if (currentReport < raidLaunchUnix) {
+					addDataToArray(fight)
+				}
 			}
 		});
 		currentPage++;
