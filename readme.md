@@ -22,6 +22,20 @@ And to run a prod build, you can run:
 npm run prod
 ```
 
+## Fetch WCL API Data
+I'd really like this to be automated, but I'm dumb. So locally, you can just run the following command to refresh all the WCL data:
+```bash
+npm run getLogs
+```
+
+## Updating WCL API for a new season
+I have a couple items in place that need to be manually updated for a new season. The first is the WCL API curl command. Inside this command is a zoneID that needs to be updated. The ID exists only on WCL, but should be avaliable once the raid hits PTR. For example, in 10.2, the current raid is Amirdrassil. Here's the link from WCL with the zoneID at the end:
+```https://www.warcraftlogs.com/zone/rankings/35```
+
+In this instance, the zoneID is `35`. Grab that ID, and update **both** curl postfields. You'll also want to nuke any existing `reportData_X.json` files in `docs/js`.
+
+Next update to make is in the `resources/js/warcraftlogs-api.js` file. Update the array of `progBosses` as well as the `activeBoss` and `activeRaid` fields. You'll also need to grab a new unix timecode for the `raidLaunchUnix` field. Generate a unix timestamp for the raid's launch data [using this handy website.](https://www.unixtimestamp.com/)
+
 ## Contributing
 Send me a message on Discord, and I'll look into it!
 @edalamay

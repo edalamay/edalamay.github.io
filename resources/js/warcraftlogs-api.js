@@ -162,26 +162,25 @@ async function fetchMetaData() {
 	while(morePagesAvailable) {
 		const response = await fetch(`/js/reportData_${currentPage}.json`)
 		let data = await response.json();
-		let innerFightData = data.data.reportData.reports.data;
+		let innerFightData = data.data.reportData.reports.data; // array of all logs
 		// console.log(data);
 
 		morePagesAvailable = data.data.reportData.reports.has_more_pages;
 		innerFightData.map((fight, i) => {
 			// addDataToArray(fight)
 			if (innerFightData[i-1]) {
-				let currentReport = innerFightData[i].startTime,
-					crRound = unixRounding(currentReport),
-					prevReport = innerFightData[i-1].startTime,
+				let currentReport = innerFightData[i].startTime, // start time of current log
+					crRound = unixRounding(currentReport), // round the value
+					prevReport = innerFightData[i-1].startTime, //
 					prRound = unixRounding(prevReport),
 					areReportsDuplicates = timeCompare(prRound, crRound);
-					if (areReportsDuplicates == false) {
+				if (areReportsDuplicates == false) { // check if current log is the same as prev log
+					if (crRound > raidLaunchUnix) { // filter logs from PTR (older than raid launch)
 						addDataToArray(fight)
 					}
-			} else {
-				let currentReport = innerFightData[i].startTime;
-				if (currentReport < raidLaunchUnix) {
-					addDataToArray(fight)
 				}
+			} else {
+				addDataToArray(fight)
 			}
 		});
 		currentPage++;
