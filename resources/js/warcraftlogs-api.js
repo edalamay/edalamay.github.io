@@ -139,9 +139,13 @@ async function fetchMetaData() {
 				let bossHp = pull.bossPercentage,
 					bossHpRounded;
 				if (pull.kill == true) { // check if this is a kill, because % might not be accurate
-					bossHpRounded = "0";
+					bossHpRounded = 0;
 				} else {
-					bossHpRounded = bossHp.toFixed(2); // get boss hp, round to single decimal
+					bossHpRounded = +bossHp.toFixed(2); // get boss hp, round to single decimal
+					/*
+						adding the `+` keeps the value from becoming a string
+						https://stackoverflow.com/a/14978830
+					*/
 				}
 				innerArray.push(bossHpRounded); // add boss % to single report array
 				if (i+1 === pulls.length) {
