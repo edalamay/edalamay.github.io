@@ -97,14 +97,14 @@ const progBosses = [
 	'Igira the Cruel',
 	'Volcoross',
 	'Council of Dreams',
-	'Larodar, Keeper of the Flame',
 	'Nymue, Weaver of the Cycle',
+	'Larodar, Keeper of the Flame',
 	'Smolderon',
 	'Tindral Sageswift, Seer of the Flame',
 	'Fyrakk the Blazing'
 ];
 
-const activeBoss = progBosses[2],
+const activeBoss = progBosses[3],
 	  activeRaid = "Amirdrassil, the Dream's Hope",
 	  raidLaunchUnix = 1699941600;
 
