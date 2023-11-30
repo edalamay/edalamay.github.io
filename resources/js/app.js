@@ -306,7 +306,8 @@
 
 // Prog/CE Kills Component
 //===========================================
-	const url = '/js/bossKills.json?v=1.2';
+	let randNum = Math.random() * 100;
+	const url = '/js/bossKills.json?v='+randNum;
 	function createKillBlocks(data) {
 		let output = data.map(function(kill) {
 			if (kill.killed == true) {
