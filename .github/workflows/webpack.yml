@@ -1,4 +1,4 @@
-name: NodeJS Build + API Fetch
+name: NodeJS with Webpack
 
 on:
   push:
