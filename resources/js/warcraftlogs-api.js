@@ -104,7 +104,7 @@ const progBosses = [
 	'Fyrakk the Blazing'
 ];
 
-const activeBoss = progBosses[5],
+const activeBoss = progBosses[6],
 	  activeRaid = "Amirdrassil, the Dream's Hope",
 	  raidLaunchUnix = 1699941600;
 
