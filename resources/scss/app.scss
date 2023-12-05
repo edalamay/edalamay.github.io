@@ -750,6 +750,7 @@ h2.special {
 				}
 				&.defeated {
 					filter: saturate(100%);
+					cursor: pointer;
 				}
 				.info {
 					position: absolute;

@@ -304,6 +304,295 @@
 
 	getStreams();
 
+// WCL API
+//===========================================
+
+	const progBosses = [
+		'Gnarlroot',
+		'Igira the Cruel',
+		'Volcoross',
+		'Council of Dreams',
+		'Nymue, Weaver of the Cycle',
+		'Larodar, Keeper of the Flame',
+		'Smolderon',
+		'Tindral Sageswift, Seer of the Flame',
+		'Fyrakk the Blazing'
+	];
+
+	let activeRaid = "Amirdrassil, the Dream's Hope",
+		raidLaunchUnix = 1699941600;
+
+	function unixRounding(value) {
+		value = value.toString(); // convert to string
+		value = value.slice(0, -3); // drop last 3 digits (1/1000s)
+		value = parseInt(value); // back to integer
+		return value;
+	}
+	function timeCompare(time1,time2) {
+		let unixHours = 4 * 60 * 60; // 4 hour in seconds
+		if ( (time1 - time2) < unixHours ) {
+			return true; // reports are duplicates
+		} else {
+			return false; // reports are unique
+		}
+	}
+	function createProgChart(bossId) {
+		let activeBoss = progBosses[bossId];
+		
+		async function fetchMetaData() {
+			let allData = []; // setting up array for boss % per pull
+			let morePagesAvailable = true;
+			let currentPage = 1;
+			let raidDay = []; // setting up array to group pulls by raid day 
+
+			function addDataToArray(fight) {
+				let pulls = fight.fights,
+					startTime = fight.startTime,
+					innerArray = [], // array of pulls from a single log
+					innerRaidDay = []; // array denoting the last pull of a night from a single log
+				// pulls.map((pull, i) => {
+				for (let i = 0; i < pulls.length; i++) {
+					let pull = pulls[i];
+					if (pull.name == activeBoss) {
+						let bossHp = pull.bossPercentage,
+							bossHpRounded;
+						if (pull.kill == false) { // check if this is a kill, because % might not be accurate
+							bossHpRounded = +bossHp.toFixed(2); // get boss hp, round to single decimal
+							/*
+								adding the `+` keeps the value from becoming a string
+								https://stackoverflow.com/a/14978830
+							*/
+							innerArray.push(bossHpRounded); // add boss % to single report array
+						} else {
+							bossHpRounded = 0; // boss is dead, so set value to 0
+							innerArray.push(bossHpRounded); // add boss % to single report array
+						}
+						if (i+1 === pulls.length) {
+							// If this is the last pull of a report, set value to 100 to denote the end of the raid day
+							innerRaidDay.push(100);
+						} else {
+							// if not the last pull, set value to 0, so we don't get anything on the graph
+							innerRaidDay.push(0);
+						}
+					}
+				};
+				// });
+				// Push array data into parent array - this puts everything in chronological order
+				allData = innerArray.concat(allData);
+				raidDay = innerRaidDay.concat(raidDay);
+			}
+
+			// Grab data from WCL, only 250 pulls per page, so we have to loop through multiple pages
+			while(morePagesAvailable) {
+				const response = await fetch(`/js/reportData_${currentPage}.json`)
+				let data = await response.json();
+				let innerFightData = data.data.reportData.reports.data; // array of all logs
+				// console.log(data);
+
+				morePagesAvailable = data.data.reportData.reports.has_more_pages;
+				innerFightData.map((fight, i) => {
+					// addDataToArray(fight)
+					if (innerFightData[i-1]) {
+						let currentReport = innerFightData[i].startTime, // start time of current log
+							crRound = unixRounding(currentReport), // round the value
+							prevReport = innerFightData[i-1].startTime, //
+							prRound = unixRounding(prevReport),
+							areReportsDuplicates = timeCompare(prRound, crRound);
+						if (areReportsDuplicates == false) { // check if current log is the same as prev log
+							if (crRound > raidLaunchUnix) { // filter logs from PTR (older than raid launch)
+								addDataToArray(fight)
+							}
+						}
+					} else {
+						addDataToArray(fight)
+					}
+				});
+				currentPage++;
+			}
+
+			// Output both arrays (boss % & raid days)
+			return [allData,raidDay];
+		}
+		var buildChart = fetchMetaData().then(function(result) {
+			// Set headings for the chart
+			const chartHeading = document.querySelector('.wcl--heading_primary'),
+				  chartSubheading = document.querySelector('.wcl--heading_secondary');
+			chartHeading.innerHTML = activeBoss;
+			chartSubheading.innerHTML = `Encounter Progress By Pull Count - Mythic ${activeRaid}`;
+
+			// grab arrays from our fetch function
+			let percentArray = result[0],
+				raidDayArray = result[1];
+			// check the array for the first '0' value, this indicates that the boss died, and we can toss out any later values				
+			let	findZero = percentArray.indexOf(0);
+			if (findZero > 0) { // make sure return value is higher than zero - if a value of `0` isn't found, the return is `-1`
+				// prune arrays
+				percentArray.length = findZero + 1;
+				raidDayArray.length = findZero + 1;
+			}
+			let	mapLowestHP = [...percentArray], // clone the percentArray
+				pointSizes= [], // set up an array to use later
+				pointRotation = [],
+				newBestText = []; // set up an array to use later
+			// Get rid of any 100% HP values, it mucks everything up ¯\_(ツ)_/¯
+			for (let x = 0; x <= percentArray.length; x++) {
+				if (percentArray[x] == 100) {
+					percentArray[x] = '99.9';
+				}
+			}
+
+			// This loop is to create the chart to track best pulls
+			for (let x = 0; x <= mapLowestHP.length; x++) {
+				// A value of 100 fucks up the logic for the 'day' bars, so just throw them out
+				if (mapLowestHP[x] == 100) {
+					mapLowestHP[x] = mapLowestHP[x-1];
+				}
+				// If current % is smaller than next value, set the next value to match, essentially making a flat line
+				// this logic appears to break when `mapLowestHP[x+1]' is equal to 100... absolutely bizarre 
+				if (mapLowestHP[x] < mapLowestHP[x+1]) { 
+					mapLowestHP[x+1] = mapLowestHP[x]; 
+				}
+				// If current % is smaller than previous, make a large point 
+				if (mapLowestHP[x] < mapLowestHP[x-1]) {
+					pointSizes.push(3.5);
+					pointRotation.push(45);
+					if (mapLowestHP[x] == "0") {
+						newBestText.push('Boss killed!');
+					} else {
+						newBestText.push('New Best!');
+					}
+				} else { // if not, make small point
+					pointSizes.push(0.1);
+					pointRotation.push(0);
+					newBestText.push('');
+				}
+			}
+			// create a new array for our x-axis label, just counts from 1 to the length of the parent array
+			const arrayLength = Array.from({length: percentArray.length}, (_, i) => i + 1);
+			// Create line chart w/ api data
+			let canvas = document.getElementById('wcl_chart'); // define canvas element
+			let ctx = canvas.getContext('2d'); // render canvas
+			// using `window.` makes the scope global, so we can clear it and redraw later
+			window.chartCanvas = new Chart(ctx, {
+				data: {
+					labels: arrayLength,
+					datasets: [
+						{ // First chart is a line, charting *every* pull %
+							type: 'line',
+							data: percentArray,
+							borderDash: [10,5],
+							borderWidth: 1,
+							borderColor: 'rgba(52, 131, 236, 0.60)',
+							pointRadius: 0,
+							label: 'This Pull'
+						},{ // second chart is a line charting all *best* pulls, tracking actual progression
+							type: 'line',
+							data: mapLowestHP,
+							borderWidth: 2,
+							borderColor: '#3483ec',
+							pointStyle: 'rect',
+							pointRadius: pointSizes, // dynamic point size based on previous logic
+							pointRotation: pointRotation, // dynamic point rotation based on previous logic
+							pointBackgroundColor: 'rgb(52, 131, 236)',
+							pointHoverRadius: 7,
+							pointHoverBorderColor: 'white',
+							label: 'Best Pull'
+						},{ // third chart is a bar, tracking raid days. Displays a line on the last pull of a raid night, breaking progression into columns per raid day
+							type: 'bar',
+							data: raidDayArray,
+							barThickness: 0.25,
+							backgroundColor: 'rgba(52, 131, 236, 1)'
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					// aspectRatio: 1 | 3,
+					maintainAspectRatio: false,
+					interaction: { // allows mouseover anywhere to trigger the closest tooltip
+						intersect: false,
+						mode: 'index',
+					},
+					scales: {
+						x: {
+							ticks: {
+								// stepSize: 5,
+								// maxTicksLimit: 50,
+								color: 'rgba(255 255 255 / 0.6)'
+							},
+							grid: {
+								color: 'rgba(255 255 255 / 0)',
+								// color: (context) => {
+								// 	if (context.tick) {
+								// 		if (context.tick.value === 0) {
+								// 			return 'rgba(255 255 255 / 0.2)'
+								// 		} else {
+								// 			return 'rgba(255 255 255 / 0)'
+								// 		}
+								// 	}
+								// }
+							}
+						},
+						y: {
+							ticks: {
+								stepSize: 20,
+								color: 'rgba(255 255 255 / 0.6)',
+								callback: (value) => {
+									return `${value}%`; //add % to y-axis labels
+								} 
+							},
+							grid: {
+								color: 'rgba(255 255 255 / 0.2)'
+							}
+						}
+					},
+					plugins: {
+						tooltip: { // modify the tooltips
+							borderWidth: 2,
+							callbacks: {
+								title: (context) => {
+									return `Pull #${context[0].label}`;
+								},
+								afterTitle: (context) => {
+									let i = context[0].label - 1;
+									if (newBestText[i].length > 0) {
+										return `${newBestText[i]}`;
+									}
+								},
+								label: (context) => { // set tooltip value for only our first two charts
+									let i = context.dataIndex,
+										value = context.dataset.data[i];
+									// filter out the data from our bar chart that denotes days
+									if (value < 100 && value > 0) {
+										return `${context.dataset.label}: ${value}%`
+									} else {
+										return '';
+									}
+								}
+							}
+						},
+						legend: {
+							display: false
+						}
+					}
+				}
+			});
+		})
+
+		// append last update time
+		function updateRefreshTime() {
+		const elem = document.getElementById('refresh');
+		const dateFile = '/js/fetchDate.txt' // provide file location
+		fetch(dateFile)
+			.then((response) => response.text())
+			.then((data) => {
+				elem.innerHTML = `Updated at ${data}`;
+			});
+		}
+		updateRefreshTime();
+	}
+	createProgChart(6);
+
 // Prog/CE Kills Component
 //===========================================
 	let randNum = Math.random() * 100;
@@ -343,9 +632,9 @@
 		container.innerHTML = output;
 	}
 	function createProgBlocks(data) {
-		let output = data.map(function(boss) {
+		let output = data.map(function(boss,i) {
 			return `
-				<div class="boss" data-boss="${boss.slug}">
+				<div class="boss" data-boss="${boss.slug}" data-id="${i}">
 					<img src="/img/${boss.raid}/${boss.slug}.png" alt="${boss.name}" width="145">
 					<div class="info">
 						<div class="killDate">
@@ -376,7 +665,18 @@
 		.then((data) => {
 			createKillBlocks(data.ceKills);
 			createProgBlocks(data.progKills);
-		});
+		})
+		.then(function(){
+			// click a boss to update the chart?
+			const progBossIcons = document.querySelectorAll('.raidProg .boss');
+			progBossIcons.forEach(boss => {
+				let bossId = boss.getAttribute('data-id');
+				boss.addEventListener("click", (event) => {
+					window.chartCanvas.destroy();
+					createProgChart(bossId);
+				});
+			})
+		})
 	
 // Refresh Raider.io iframe
 //===========================================

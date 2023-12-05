@@ -6,7 +6,6 @@ mix.babel([
 		'resources/js/app.js',
 		'resources/js/raiderio-api.js'
 	], 'docs/js/app.js')
-	.js('resources/js/warcraftlogs-api.js','docs/js')
 	.sass('resources/scss/app.scss', 'docs/css/')
 	.copy([
 		'node_modules/bootstrap/dist/css/bootstrap.min.css',

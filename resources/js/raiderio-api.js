@@ -25,7 +25,7 @@ const bosses = [
 ];
 
 const progRaid = 'amirdrassil-the-dreams-hope';
-const progBosses = [
+const progBossesRIO = [
 	'gnarlroot',
 	'igira-the-cruel',
 	'volcoross',
@@ -59,7 +59,7 @@ function makeTitle(slug) {
 // Add kill data to current prog bosses
 //===========================================
 function updateProgData() {
-	progBosses.forEach((boss,index) => {
+	progBossesRIO.forEach((boss,index) => {
 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
 
 		const container = document.querySelector(`.raidProg .boss[data-boss="${boss}"]`),
@@ -97,9 +97,9 @@ function updateProgData() {
 //===========================================
 
 	// let bossProgArray = [];
-	// let createProgBosses = new Promise((resolve, reject) => {
+	// let createprogBossesRIO = new Promise((resolve, reject) => {
 	// 	let i = 0;
-	// 	progBosses.forEach((boss,index) => {
+	// 	progBossesRIO.forEach((boss,index) => {
 	// 		const bossEndpoint = `https://raider.io/api/v1/guilds/boss-kill?region=${region}&realm=${realm}&guild=${guild}&raid=${progRaid}&boss=${boss}&difficulty=${difficulty}`;
 	// 		const imgUrl = `/img/${progRaid}/${boss}.png`;
 	// 		const wrapper = document.querySelector('.raidProg');
@@ -123,12 +123,12 @@ function updateProgData() {
 	// 			});
 	// 		i++;
 	// 	});
-	// 	if (i === progBosses.length) {
+	// 	if (i === progBossesRIO.length) {
 	// 		// resolve('done');
 	// 		setTimeout(() => resolve("done"), 1000);
 	// 	}
 	// });
-	// createProgBosses.then((result) => {
+	// createprogBossesRIO.then((result) => {
 	// 	const wrapper = document.querySelector('.raidProg');
 	// 	// sort array
 	// 	bossProgArray.sort(function(a, b) {
