@@ -329,7 +329,7 @@
 		return value;
 	}
 	function timeCompare(time1,time2) {
-		let unixHours = 4 * 60 * 60; // 4 hour in seconds
+		let unixHours = 1.5 * 60 * 60; // 1.5 hour in seconds
 		if ( (time1 - time2) < unixHours ) {
 			return true; // reports are duplicates
 		} else {
