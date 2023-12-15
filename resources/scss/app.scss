@@ -465,6 +465,9 @@ h2.special {
 					margin-top: 2rem;
 					justify-content: flex-end;
 				}
+				a {
+					padding: 0.8rem;
+				}
 			}
 			li {
 				@include media('>=md') {
@@ -509,7 +512,7 @@ h2.special {
 						}
 						svg {
 							fill: white;
-							height: 1em;
+							height: 1.1em;
 						}
 						&--discord {
 							svg {
@@ -525,6 +528,13 @@ h2.special {
 							// 		}
 							// 	}
 							// }
+						}
+						&--wcl {
+							svg {
+								.color {
+									fill: #fff;
+								}
+							}
 						}
 						&--raiderio {
 							// &:hover {
@@ -1377,6 +1387,12 @@ h2.special {
 			text-align: center;
 		}
 		li {
+			&.icons {
+				display: flex;
+				margin-top: 1rem;
+				gap: 1.4rem;
+				padding: 0.5rem;
+			}
 			a {
 				position: relative;
 				padding: 0.5rem;
@@ -1401,15 +1417,16 @@ h2.special {
 					@extend .linkUnderline;
 				}
 				&.img {
-					margin-top: 1rem;
-					@include media('>=xsm') {
-						&:not(:last-of-type) {
-							margin-right: 1rem;
-						}
-					}
+					padding: 0;
+					// margin-top: 1rem;
+					// @include media('>=xsm') {
+					// 	&:not(:last-of-type) {
+					// 		margin-right: 1rem;
+					// 	}
+					// }
 					svg {
 						fill: white;
-						height: 3rem;
+						height: 2.8rem;
 					}
 					&--discord {
 						svg {
@@ -1417,23 +1434,23 @@ h2.special {
 								fill: transparent;
 							}
 						}
-						&:hover {
-							svg {
-								fill: var(--brand-discord);
-								.color {
-									fill: white;
-								}
-							}
-						}
+						// &:hover {
+						// 	svg {
+						// 		fill: var(--brand-discord);
+						// 		.color {
+						// 			fill: white;
+						// 		}
+						// 	}
+						// }
 					}
 					&--raiderio {
-						&:hover {
-							svg {
-								.color {
-									fill: var(--brand-raiderio);
-								}
-							}
-						}
+						// &:hover {
+						// 	svg {
+						// 		.color {
+						// 			fill: var(--brand-raiderio);
+						// 		}
+						// 	}
+						// }
 					}
 				}
 			}
