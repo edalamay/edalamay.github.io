@@ -591,7 +591,7 @@
 		}
 		updateRefreshTime();
 	}
-	createProgChart(6);
+	createProgChart(7);
 
 // Prog/CE Kills Component
 //===========================================
