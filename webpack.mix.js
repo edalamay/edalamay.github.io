@@ -3,8 +3,7 @@ mix.babel([
 		'node_modules/bootstrap/dist/js/bootstrap.min.js',
 		'node_modules/body-scroll-lock/lib/bodyScrollLock.min.js',
 		'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js',
-		'resources/js/app.js',
-		'resources/js/raiderio-api.js'
+		'resources/js/app.js'
 	], 'docs/js/app.js')
 	.sass('resources/scss/app.scss', 'docs/css/')
 	.copy([

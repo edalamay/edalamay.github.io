@@ -12,7 +12,8 @@
 		"watch-poll": "mix watch -- --watch-options-poll=1000",
 		"hot": "mix watch --hot",
 		"prod": "mix --production",
-		"getLogs": "php docs/getReportData.php"
+		"getLogs": "php docs/getReportData.php",
+		"getRaceData": "php docs/getRaceData.php"
 	},
 	"keywords": [],
 	"author": "",
