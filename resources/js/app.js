@@ -565,6 +565,9 @@
 				// click event for boss heads - click to show the bosses prog
 				clickChartUpdate(raidData);
 
+				// hide the loader
+				document.querySelector('#loading').style.display = "none";
+
 			})
 			.catch(err => console.error(err));
 	}
