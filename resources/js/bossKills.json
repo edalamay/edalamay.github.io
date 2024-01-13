@@ -96,16 +96,16 @@
 			"video": "C1x4nIYIkao"
 		},
 		{
-			"name": "Nymue, Weaver of the Cycle",
-			"slug": "nymue-weaver-of-the-cycle",
-			"raid": "amirdrassil-the-dreams-hope",
-			"video": "GRlt9vd6oQ0"
-		},
-		{
 			"name": "Larodar, Keeper of the Flame",
 			"slug": "larodar-keeper-of-the-flame",
 			"raid": "amirdrassil-the-dreams-hope",
 			"video": "KwkRhl0yjEc"
+		},
+		{
+			"name": "Nymue, Weaver of the Cycle",
+			"slug": "nymue-weaver-of-the-cycle",
+			"raid": "amirdrassil-the-dreams-hope",
+			"video": "GRlt9vd6oQ0"
 		},
 		{
 			"name": "Smolderon",
