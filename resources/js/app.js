@@ -557,6 +557,10 @@
 				let activeBossName = getCurrentBossName(progBosses, activeBoss);
 
 				// create chart
+					// if this is a refresh, destroy the existing canvas so we can redraw
+				if (window.chartCanvas) {
+					window.chartCanvas.destroy();
+				}
 				createProgChart(raidData,killedCount);
 
 				// update prog on boss heads, including kill date
@@ -586,7 +590,6 @@
 			elem.innerHTML = `Updated at ${currentTime}`;
 		}
 		const interval = setInterval(function() {
-			window.chartCanvas.destroy();
 			wclFetch();
 			updateRefreshTime();
 		}, refreshRate);
