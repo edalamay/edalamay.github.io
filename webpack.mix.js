@@ -15,8 +15,14 @@ mix.babel([
 		processCssUrls: false
 	})
 	.browserSync({
-		proxy: "https://commit-guild.localhost/",
+		proxy: "https://commit-guild.localhost",
 		ghostMode: false,
+		https: {
+			// key: "/Applications/MAMP/Library/OpenSSL/certs/commit-guild.localhost.key",
+			// cert: "/Applications/MAMP/Library/OpenSSL/certs/commit-guild.localhost.crt"
+			key: "/Users/cameron/mamp-ssl/commit-guild.localhost.key",
+			cert: "/Users/cameron/mamp-ssl/commit-guild.localhost.crt"
+		},
 		files: [
 			"./docs/*.html",
 			"./resources/js/**/*.js",

@@ -556,11 +556,12 @@
 				// get text name of current prog boss
 				let activeBossName = getCurrentBossName(progBosses, activeBoss);
 
-				// create chart
-					// if this is a refresh, destroy the existing canvas so we can redraw
+				
+				// if this is a refresh, destroy the existing canvas so we can redraw
 				if (window.chartCanvas) {
 					window.chartCanvas.destroy();
 				}
+				// create chart
 				createProgChart(raidData,killedCount);
 
 				// update prog on boss heads, including kill date
@@ -688,6 +689,7 @@
 		})
 	
 // Refresh Raider.io iframe
+	/* not in use, keeping it here for reference */
 //===========================================
 	function updateProg() {
 		const timeMin = 5, // refresh time in minutes
