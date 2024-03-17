@@ -3,12 +3,12 @@
 		{
 			"boss": "Fyrakk",
 			"slug": "fyrakk",
-			"killed": false,
-			"date": "",
-			"rank": "",
+			"killed": true,
+			"date": "March 14, 2024",
+			"rank": "US 238",
 			"img": "/img/bosses/fyrakk.webp",
-			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/amirdrassil-the-dreams-hope/fyrakk",
-			"vidID": ""
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/amirdrassil-the-dreams-hope/fyrakk-the-blazing",
+			"vidID": "giUoxrSdwUY"
 		},
 		{
 			"boss": "Sarkareth",
@@ -123,7 +123,7 @@
 			"name": "Fyrakk the Blazing",
 			"slug": "fyrakk-the-blazing",
 			"raid": "amirdrassil-the-dreams-hope",
-			"video": ""
+			"video": "giUoxrSdwUY"
 		}
 	],
 	"progKills_10.1": [
