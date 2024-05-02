@@ -149,8 +149,18 @@
 
 // nav scroll effect
 //===========================================
+	// if we hid the prog container, then we need to swap the logic to the kill screenshot container.
+	// activeProg is set below in the WCL section.
+	var sectionOne;
+	if (activeProg == false) {
+		sectionOne = document.querySelector('.section--kill_screenshot');
+	} else {
+		sectionOne = document.querySelector('.section--kill_screenshot')
+	}
+	
 	let nav = document.querySelector('#header'),
-		sectionOneOffset = document.querySelector('.section--prog').offsetTop,
+		// sectionOneOffset = document.querySelector('.section--prog').offsetTop,
+		sectionOneOffset = sectionOne.offsetTop,
 		navMargin = parseInt(getComputedStyle(nav)['margin-top'], 10),
 		navHeight = nav.offsetHeight + navMargin,
 		bgOpacity = 0,
