@@ -88,6 +88,9 @@ body {
 		padding: 44px 0;
 	}
 }
+img {
+	max-width: 100%;
+}
 
 [data-tooltip] {
 	&::before,
@@ -702,6 +705,7 @@ h2.special {
 	&--prog {
 		background: var(--brand-darkestGrey);
 		padding: 6rem 0 4rem;
+		display: none;
 		.raidProg {
 			position: relative;
 			display: flex;
@@ -980,6 +984,10 @@ h2.special {
 				// }
 			}
 		}
+	}
+	&--kill_screenshot {
+		background: var(--brand-darkestGrey);
+		padding: 6rem 0 4rem;
 	}
 	&--ce {
 		background: var(--brand-darkestGrey);

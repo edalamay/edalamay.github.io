@@ -488,8 +488,10 @@
 		// clearInterval(interval);
 	}
 
-	wclFetch();
+	
 	if (activeProg) {
+		document.querySelector('.section--prog').style.display = 'block';
+		wclFetch();
 		refreshChartData();
 	}
 
