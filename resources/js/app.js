@@ -74,7 +74,8 @@
 //===========================================
 	// 10.1 video = 2yiePgk0uWU 
 	// 10.2 video = Ti0Jucb3FZA
-	const vidID = 'Ti0Jucb3FZA',
+	// TWW launch video = Se30Wr9Fq7o
+	const vidID = 'Se30Wr9Fq7o',
 		  ytParent = document.querySelector('.section--banner .background'),
 		  ytThumb = document.querySelector('.section--banner .thumbnail');
 
