@@ -635,8 +635,8 @@ h2.special {
 					transform: scale(2.6);
 				}
 			}
-			img {
-				transform: scale(1);
+			.thumbnail {
+				transform: scale(1.2); // matching scale of vid for alignment
 			}
 		}
 		.content {
