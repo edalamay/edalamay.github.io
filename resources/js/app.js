@@ -156,7 +156,7 @@
 	if (activeProg == false) {
 		sectionOne = document.querySelector('.section--kill_screenshot');
 	} else {
-		sectionOne = document.querySelector('.section--kill_screenshot')
+		sectionOne = document.querySelector('.section--prog')
 	}
 	
 	let nav = document.querySelector('#header'),
@@ -204,7 +204,7 @@
 
 // WCL API
 //===========================================
-	const activeProg = false;
+	const activeProg = true;
 	function getCurrentBossName(array,id) {
 		return array.find((obj) => obj.id === id).name;
 	}
@@ -385,7 +385,7 @@
 			    .replace(/[\s_-]+/g, '-')
 			    .replace(/^-+|-+$/g, '');
 		encounters.forEach((boss,index) => {
-			const container = document.querySelector(`.raidProg .boss[data-boss="${slugify(boss.name)}"]`),
+			const container = document.querySelector(`.raidProg .boss[data-bossId="${boss.id}"]`),
 				  infoWrap = container.querySelector('.killDate'),
 				  infoBlock = container.querySelector('.killDate--tooltip');
 			let bossName = boss.name;
@@ -423,13 +423,14 @@
 			query: `{
 				progressRaceData {
 					progressRace(
-						guildID: 273044
+						guildID: 273044,
+						difficulty: 5
 					)
 				}
 			}`
 		})
 	};
-	const activeRaid = "Amirdrassil, the Dream's Hope";
+	const activeRaid = "Nerub-ar Palace";
 	// Fetch Data
 	function wclFetch() {
 		fetch('https://www.warcraftlogs.com/api/v2/user', options)
@@ -501,12 +502,13 @@
 
 	
 	if (activeProg) {
-		document.querySelector('.section--prog').style.display = 'block';
 		wclFetch();
 		refreshChartData();
+	} else {
+		document.querySelector('.section--prog').style.display = 'none';
 	}
 
-// Prog/CE Kills Component
+// CE Kills Component
 //===========================================
 	let randNum = Math.random() * 100;
 	const url = '/js/bossKills.json?v='+randNum;
@@ -547,8 +549,8 @@
 	function createProgBlocks(data) {
 		let output = data.map(function(boss,i) {
 			return `
-				<div class="boss" data-boss="${boss.slug}" data-id="${i}">
-					<img src="/img/${boss.raid}/${boss.slug}.png" alt="${boss.name}" width="145">
+				<div class="boss" data-boss="${boss.slug}" data-bossId="${boss.id}" data-id="${i}">
+					<img src="/img/${boss.raid}/${boss.slug}.webp" alt="${boss.name}" width="145">
 					<div class="info">
 						<div class="killDate">
 							<div class="killDate--tooltip"></div>
@@ -594,6 +596,7 @@
 // Refresh Raider.io iframe
 	/* not in use, keeping it here for reference */
 //===========================================
+	/*
 	function updateProg() {
 		const timeMin = 5, // refresh time in minutes
 			  refreshRate = timeMin * 60 * 1000; // convert to ms
@@ -640,6 +643,7 @@
 		// clearInterval(interval);
 	}
 	// updateProg();
+	*/
 
 
 
@@ -662,7 +666,7 @@
 
 	async function getStreams() {
 		// const users = ['soap','adeenthequeen','veraneka','eyelashTV','warcraft','naguura','sco','naowh','gingitv','hazelnuttygames','cdewx','fragnance']; //testing array
-		const users = ['samthepackleader','bowett','edalamay','asherrthered','aka_vinny','redpandacake','Maximino_V']; // live array
+		const users = ['samthepackleader','bowett','edalamay','asherrthered','aka_vinny','redpandacake']; // live array
 		const endpoint = "https://api.twitch.tv/helix/streams?user_login="+users.join('&user_login=');
 
 		let authorizationObject = await getTwitchAuthorization();

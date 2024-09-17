@@ -72,6 +72,56 @@
 	],
 	"progKills": [
 		{
+			"name": "Ulgrax the Devourer",
+			"slug": "ulgrax-the-devourer",
+			"raid": "nerubar-palace",
+			"id": 2902
+		},
+		{
+			"name": "The Bloodbound Horror",
+			"slug": "the-bloodbound-horror",
+			"raid": "nerubar-palace",
+			"id": 2917
+		},
+		{
+			"name": "Sikran",
+			"slug": "sikran",
+			"raid": "nerubar-palace",
+			"id": 2898
+		},
+		{
+			"name": "Rasha'nan",
+			"slug": "rashanan",
+			"raid": "nerubar-palace",
+			"id": 2918
+		},
+		{
+			"name": "Broodtwister Ovinax",
+			"slug": "broodtwister-ovinax",
+			"raid": "nerubar-palace",
+			"id": 2919
+		},
+		{
+			"name": "Nexus-Princess Kyveza",
+			"slug": "nexus-princess-kyveza",
+			"raid": "nerubar-palace",
+			"id": 2920
+		},
+		{
+			"name": "The Silken Court",
+			"slug": "the-silken-court",
+			"raid": "nerubar-palace",
+			"id": 2921
+		},
+		{
+			"name": "Queen Ansurek",
+			"slug": "queen-ansurek",
+			"raid": "nerubar-palace",
+			"id": 2922
+		}
+	],
+	"progKills_10.2": [
+		{
 			"name": "Gnarlroot",
 			"slug": "gnarlroot",
 			"raid": "amirdrassil-the-dreams-hope",

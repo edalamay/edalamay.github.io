@@ -6,6 +6,7 @@ const region = 'us',
 	  difficulty = 'mythic';
 
 const raids = [
+	'nerubar-palace',
 	'amirdrassil-the-dreams-hope',
 	'aberrus-the-shadowed-crucible',
 	'vault-of-the-incarnates',
@@ -24,17 +25,16 @@ const bosses = [
 	'nzoth-the-corruptor'
 ];
 
-const progRaid = 'amirdrassil-the-dreams-hope';
+const progRaid = 'nerubar-palace';
 const progBossesRIO = [
-	'gnarlroot',
-	'igira-the-cruel',
-	'volcoross',
-	'council-of-dreams',
-	'larodar-keeper-of-the-flame',
-	'nymue-weaver-of-the-cycle',
-	'smolderon',
-	'tindral-sageswift-seer-of-the-flame',
-	'fyrakk-the-blazing'
+	'ulgrax-the-devourer'
+	'the-bloodbound-horror',
+	'sikran',
+	'rashanan',
+	'broodtwister-ovinax'.
+	'nexus-princess-kyveza',
+	'the-silken-court',
+	'queen-ansurek'
 ];
 
 function makeTitle(slug) {
