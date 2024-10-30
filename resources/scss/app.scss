@@ -724,7 +724,7 @@ h2.special {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				filter: saturate(0);
+				// filter: saturate(0);
 				transition: filter 150ms ease;
 				@include media('<md') {
 					border-bottom: 2px solid #151314;
@@ -745,8 +745,17 @@ h2.special {
 				&:hover {
 					filter: saturate(0.75);
 				}
+				@keyframes strobe {
+					from {
+						filter: saturate(0) drop-shadow(0px 0px 4px rgba($brand-blue, 0.4));
+					}
+					to {
+						filter: saturate(0) drop-shadow(0px 0px 8px rgba($brand-blue, 0.9));
+					}
+				}
 				img {
 					max-width: 100%;
+					filter: saturate(0);
 					@include media('<lg') {
 						width: 130px;
 					}
@@ -763,8 +772,15 @@ h2.special {
 					}
 				}
 				&.defeated {
-					filter: saturate(100%);
 					cursor: pointer;
+					img {
+						filter: saturate(100%);
+					}
+					+ .boss:not(.defeated) {
+						img {
+							animation: 2s infinite alternate strobe;
+						}
+					}
 				}
 				.info {
 					position: absolute;
@@ -934,6 +950,7 @@ h2.special {
 			padding: 2rem 1rem 1rem;
 			border: 2px solid black;
 			background: linear-gradient(0deg, #000, #272a2f);
+			z-index: 2;
 			h2 {
 				font-size: 3.5rem;
 				@include media('<lg') {
