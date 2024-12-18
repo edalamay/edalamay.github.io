@@ -1,6 +1,16 @@
 {
 	"ceKills": [
 		{
+			"boss": "Queen Ansurek",
+			"slug": "ansurek",
+			"killed": false,
+			"date": "January XX, 2025",
+			"rank": "US 199",
+			"img": "/img/bosses/ansurek.webp",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/nerubar-palace/queen-ansurek",
+			"vidID": ""
+		},
+		{
 			"boss": "Fyrakk",
 			"slug": "fyrakk",
 			"killed": true,
