@@ -829,7 +829,7 @@ h2.special {
 								display: block;
 								position: absolute;
 								width: 20px;
-								height: 10px;
+								height: 20px;
 								// background: black;
 								background-color: #111;
 								border: 1px solid #222;
@@ -837,8 +837,9 @@ h2.special {
 								top: 100%;
 								left: 50%;
 								transition: 150ms ease;
-								transform: translate(-50%, calc(-100% + 10px));
-								clip-path: polygon(0 0, 100% 0, 50% 100%);
+								transform: translate(-50%, calc(-100% + 10px)) rotate(45deg);
+								// clip-path: polygon(0 0, 100% 0, 50% 100%);
+								clip-path: polygon(100% 0, 100% 100%, 0 100%);
 							}
 							span {
 								opacity: 0.45;
