@@ -6,6 +6,7 @@ const region = 'us',
 	  difficulty = 'mythic';
 
 const raids = [
+	'liberation-of-undermine',
 	'nerubar-palace',
 	'amirdrassil-the-dreams-hope',
 	'aberrus-the-shadowed-crucible',
@@ -16,6 +17,8 @@ const raids = [
 	'nyalotha-the-waking-city'
 ];
 const bosses = [
+	'chrome-king-gallywix',
+	'queen-ansurek',
 	'fyrakk-the-blazing',
 	'scalecommander-sarkareth',
 	'raszageth-the-stormeater',
@@ -27,14 +30,14 @@ const bosses = [
 
 const progRaid = 'nerubar-palace';
 const progBossesRIO = [
-	'ulgrax-the-devourer'
-	'the-bloodbound-horror',
-	'sikran',
-	'rashanan',
-	'broodtwister-ovinax'.
-	'nexus-princess-kyveza',
-	'the-silken-court',
-	'queen-ansurek'
+	'vexie-and-the-geargrinders',
+	'cauldron-of-carnage',
+	'rik-reverb',
+	'stix-bunkjunker',
+	'sprocketmonger-lockenstock',
+	'onearmed-bandit',
+	'mugzee-heads-of-security',
+	'chrome-king-gallywix'
 ];
 
 function makeTitle(slug) {

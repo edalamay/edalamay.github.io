@@ -5499,7 +5499,7 @@ var options = {
     query: "{\n\t\t\t\tprogressRaceData {\n\t\t\t\t\tprogressRace(\n\t\t\t\t\t\tguildID: 273044,\n\t\t\t\t\t\tdifficulty: 5\n\t\t\t\t\t)\n\t\t\t\t}\n\t\t\t}"
   })
 };
-var activeRaid = "Nerub-ar Palace";
+var activeRaid = "Liberation of Undermine";
 // Fetch Data
 function wclFetch() {
   fetch('https://www.warcraftlogs.com/api/v2/user', options).then(function (response) {
@@ -5604,7 +5604,7 @@ function createKillBlocks(data) {
 }
 function createProgBlocks(data) {
   var output = data.map(function (boss, i) {
-    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\" data-bossId=\"").concat(boss.id, "\" data-id=\"").concat(i, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".webp\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\">\n\t\t\t\t\t\t\t<div class=\"killDate--tooltip\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t").concat(function () {
+    return "\n\t\t\t\t<div class=\"boss\" data-boss=\"".concat(boss.slug, "\" data-bossId=\"").concat(boss.id, "\" data-id=\"").concat(i, "\">\n\t\t\t\t\t<img src=\"/img/").concat(boss.raid, "/").concat(boss.slug, ".webp\" alt=\"").concat(boss.name, "\" width=\"145\">\n\t\t\t\t\t<div class=\"info\">\n\t\t\t\t\t\t<div class=\"killDate\">\n\t\t\t\t\t\t\t<div class=\"killDate--tooltip\">").concat(boss.name, " <br><span>undefeated</span></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t").concat(function () {
       if (boss.video) {
         return "\n\t\t\t\t\t\t\t\t\t<a class=\"video\" data-fancybox href=\"https://www.youtube.com/watch?v=".concat(boss.video, "\" data-tooltip=\"Watch Kill Video\" data-position=\"top\"><img src=\"/img/youtube.svg\" alt=\"YouTube\"></a>\n\t\t\t\t\t\t\t\t");
       } else {

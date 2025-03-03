@@ -431,7 +431,7 @@
 			}`
 		})
 	};
-	const activeRaid = "Nerub-ar Palace";
+	const activeRaid = "Liberation of Undermine";
 	// Fetch Data
 	function wclFetch() {
 		fetch('https://www.warcraftlogs.com/api/v2/user', options)
@@ -554,7 +554,7 @@
 					<img src="/img/${boss.raid}/${boss.slug}.webp" alt="${boss.name}" width="145">
 					<div class="info">
 						<div class="killDate">
-							<div class="killDate--tooltip"></div>
+							<div class="killDate--tooltip">${boss.name} <br><span>undefeated</span></div>
 						</div>
 						${(() => {
 							if (boss.video) {

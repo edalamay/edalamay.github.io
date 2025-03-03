@@ -1,6 +1,16 @@
 {
 	"ceKills": [
 		{
+			"boss": "Chrome King Gallywix",
+			"slug": "chrome-king-gallywix",
+			"killed": false,
+			"date": "June 1, 2025",
+			"rank": "US 200",
+			"img": "/img/bosses/chrome-king-gallywix.webp",
+			"externalUrl": "https://raider.io/guilds/us/stormrage/Commit/raid-encounters/mythic/liberation-of-undermine/chrome-king-gallywix",
+			"vidID": ""
+		},
+		{
 			"boss": "Queen Ansurek",
 			"slug": "ansurek",
 			"killed": true,
@@ -81,6 +91,56 @@
 		}
 	],
 	"progKills": [
+		{
+			"name": "Vexie and the Geargrinders",
+			"slug": "vexie-and-the-geargrinders",
+			"raid": "liberation-of-undermine",
+			"id": 3009
+		},
+		{
+			"name": "Cauldron of Carnage",
+			"slug": "cauldron-of-carnage",
+			"raid": "liberation-of-undermine",
+			"id": 3010
+		},
+		{
+			"name": "Rik Reverb",
+			"slug": "rik-reverb",
+			"raid": "liberation-of-undermine",
+			"id": 3011
+		},
+		{
+			"name": "Stix Bunkjunker",
+			"slug": "stix-bunkjunker",
+			"raid": "liberation-of-undermine",
+			"id": 3012
+		},
+		{
+			"name": "Sprocketmonger Lockenstock",
+			"slug": "sprocketmonger-lockenstock",
+			"raid": "liberation-of-undermine",
+			"id": 3013
+		},
+		{
+			"name": "The One-Armed Bandit",
+			"slug": "onearmed-bandit",
+			"raid": "liberation-of-undermine",
+			"id": 3014
+		},
+		{
+			"name": "Mug'Zee, Heads of Security",
+			"slug": "mugzee-heads-of-security",
+			"raid": "liberation-of-undermine",
+			"id": 3015
+		},
+		{
+			"name": "Chrome King Gallywix",
+			"slug": "chrome-king-gallywix",
+			"raid": "liberation-of-undermine",
+			"id": 3016
+		}
+	],
+	"progKills_10.3": [
 		{
 			"name": "Ulgrax the Devourer",
 			"slug": "ulgrax-the-devourer",
