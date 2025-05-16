@@ -3,7 +3,7 @@
 		{
 			"boss": "Chrome King Gallywix",
 			"slug": "chrome-king-gallywix",
-			"killed": false,
+			"killed": true,
 			"date": "May 14, 2025",
 			"rank": "US 148",
 			"img": "/img/bosses/chrome-king-gallywix.webp",
