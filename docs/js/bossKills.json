@@ -92,6 +92,56 @@
 	],
 	"progKills": [
 		{
+			"name": "Plexus Sentinel",
+			"slug": "plexus-sentinel",
+			"raid": "manaforge-omega",
+			"id": 3009
+		},
+		{
+			"name": "Loom'ithar",
+			"slug": "loomithar",
+			"raid": "manaforge-omega",
+			"id": 3010
+		},
+		{
+			"name": "Soulbinder Naazindhri",
+			"slug": "soulbinder-naazindhri",
+			"raid": "manaforge-omega",
+			"id": 3011
+		},
+		{
+			"name": "Forgeweaver Araz",
+			"slug": "forgeweaver-araz",
+			"raid": "manaforge-omega",
+			"id": 3012
+		},
+		{
+			"name": "The Soul Hunters",
+			"slug": "the-soul-hunters",
+			"raid": "manaforge-omega",
+			"id": 3013
+		},
+		{
+			"name": "Fractillus",
+			"slug": "fractillus",
+			"raid": "manaforge-omega",
+			"id": 3014
+		},
+		{
+			"name": "Nexus-King Salhadaar",
+			"slug": "nexus-king-salhadaar",
+			"raid": "manaforge-omega",
+			"id": 3015
+		},
+		{
+			"name": "Dimensius, the All-Devouring",
+			"slug": "dimensius",
+			"raid": "manaforge-omega",
+			"id": 3016
+		}
+	],
+    "progKills_11.1": [
+		{
 			"name": "Vexie and the Geargrinders",
 			"slug": "vexie-and-the-geargrinders",
 			"raid": "liberation-of-undermine",
@@ -140,7 +190,7 @@
 			"id": 3016
 		}
 	],
-	"progKills_10.3": [
+	"progKills_11.0": [
 		{
 			"name": "Ulgrax the Devourer",
 			"slug": "ulgrax-the-devourer",

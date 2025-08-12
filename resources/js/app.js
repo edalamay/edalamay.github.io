@@ -76,7 +76,8 @@
 	// 10.2 video = Ti0Jucb3FZA
 	// TWW launch video = Se30Wr9Fq7o
 	// 11.1 video = nVBHwnYjT_A
-	const vidID = 'nVBHwnYjT_A',
+	// 11.2 video = w1BqZ-aogpk
+	const vidID = 'w1BqZ-aogpk',
 		  ytParent = document.querySelector('.section--banner .background'),
 		  ytThumb = document.querySelector('.section--banner .thumbnail');
 
@@ -432,7 +433,7 @@
 			}`
 		})
 	};
-	const activeRaid = "Liberation of Undermine";
+	const activeRaid = "Manaforge Omega";
 	// Fetch Data
 	function wclFetch() {
 		fetch('https://www.warcraftlogs.com/api/v2/user', options)
