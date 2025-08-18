@@ -776,7 +776,7 @@ h2.special {
 					img {
 						filter: saturate(100%);
 					}
-					+ .boss:not(.defeated) {
+					&:first-of-type + .boss:not(.defeated) {
 						img {
 							animation: 2s infinite alternate strobe;
 						}

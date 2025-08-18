@@ -95,49 +95,49 @@
 			"name": "Plexus Sentinel",
 			"slug": "plexus-sentinel",
 			"raid": "manaforge-omega",
-			"id": 3009
+			"id": 3129
 		},
 		{
 			"name": "Loom'ithar",
 			"slug": "loomithar",
 			"raid": "manaforge-omega",
-			"id": 3010
+			"id": 3131
 		},
 		{
 			"name": "Soulbinder Naazindhri",
 			"slug": "soulbinder-naazindhri",
 			"raid": "manaforge-omega",
-			"id": 3011
+			"id": 3130
 		},
 		{
 			"name": "Forgeweaver Araz",
 			"slug": "forgeweaver-araz",
 			"raid": "manaforge-omega",
-			"id": 3012
+			"id": 3132
 		},
 		{
 			"name": "The Soul Hunters",
 			"slug": "the-soul-hunters",
 			"raid": "manaforge-omega",
-			"id": 3013
+			"id": 3122
 		},
 		{
 			"name": "Fractillus",
 			"slug": "fractillus",
 			"raid": "manaforge-omega",
-			"id": 3014
+			"id": 3133
 		},
 		{
 			"name": "Nexus-King Salhadaar",
 			"slug": "nexus-king-salhadaar",
 			"raid": "manaforge-omega",
-			"id": 3015
+			"id": 3134
 		},
 		{
 			"name": "Dimensius, the All-Devouring",
 			"slug": "dimensius",
 			"raid": "manaforge-omega",
-			"id": 3016
+			"id": 3135
 		}
 	],
     "progKills_11.1": [
